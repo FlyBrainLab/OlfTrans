@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib import ticker
 import numpy as np
 
+
 def plot_multiple(
     data_x: np.ndarray, *args, **kwargs
 ) -> tp.Tuple[plt.Figure, np.ndarray]:
@@ -201,7 +202,7 @@ def plot_mat(
         >>> wav = utils.generate_stimulus('step', dt, dur, (start, stop), amps)
         >>> ax,cbar = plot_mat(wav, t=t, cax=True, vmin=10, vmax=100, cbar_kw={'label':'test'}, cmap=plt.cm.gnuplot)
         >>> ax, = plot_mat(wav, t=t, cax=False, vmin=10, vmax=100, cbar_kw={'label':'test'}, cmap=plt.cm.gnuplot)
-    """    
+    """
     mat = np.atleast_2d(mat)
     if mat.ndim != 2:
         raise ValueError(
@@ -241,10 +242,11 @@ def plot_mat(
     else:
         return (ax,)
 
-def yyaxis(ax, c='red'):
+
+def yyaxis(ax, c="red"):
     """Create A second axis with colored spine/ticks/label"""
     ax2 = ax.twinx()
-    ax2.spines['right'].set_color(c)
-    ax2.tick_params(axis='y', colors=c)
+    ax2.spines["right"].set_color(c)
+    ax2.tick_params(axis="y", colors=c)
     ax2.yaxis.label.set_color(c)
     return ax2

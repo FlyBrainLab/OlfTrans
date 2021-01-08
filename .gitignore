@@ -105,3 +105,4 @@ ENV/
 .vscode/
 .editorconfig
 *.h5
+notebooks/**/*.npz

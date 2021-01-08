@@ -15,6 +15,7 @@ import typing as tp
 from binascii import unhexlify
 import numpy as np
 
+
 def chunk(type, data):
     return (
         struct.pack(">I", len(data))
@@ -58,6 +59,7 @@ def generate_stimulus(
         ratio (float): a
 
     """
+
     def _generate_step(
         waveforms: np.ndarray,
         d_t: float,
@@ -209,7 +211,7 @@ def generate_spike_from_psth(
     psth_t = np.asarray(psth_t)
 
     if psth.ndim > 1:
-        psth =np.squeeze(psth)
+        psth = np.squeeze(psth)
         if psth.ndim > 1:
             raise ValueError(
                 f"Only 1D psth array is accepted, got shape ({psth.shape}) after squeezing"
@@ -220,18 +222,23 @@ def generate_spike_from_psth(
             raise ValueError(
                 f"psth_t shape ({psth_t.shape}) needs to be the same as psth shape ({psth.shape})"
             )
-        t =np.arange(psth_t.min(), psth_t.max(), d_t)
-        
+        t = np.arange(psth_t.min(), psth_t.max(), d_t)
+
         rate = np.interp(t, psth_t, psth)
     else:
         t = np.arange(len(psth)) * d_t
         rate = psth
 
     if num > 1:
-        rate =np.repeat(psth[:, None], num, axis=-1)
-        spikes =np.random.rand(len(t), num) < d_t * rate
+        rate = np.repeat(psth[:, None], num, axis=-1)
+        spikes = np.random.rand(len(t), num) < d_t * rate
     else:
-        spikes = (np.random.rand(len(t),)< d_t * rate)
+        spikes = (
+            np.random.rand(
+                len(t),
+            )
+            < d_t * rate
+        )
 
     return t, np.ascontiguousarray(spikes.T)
 
