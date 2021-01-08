@@ -104,5 +104,4 @@ ENV/
 # IDE settings
 .vscode/
 .editorconfig
-*.npz
 *.h5
