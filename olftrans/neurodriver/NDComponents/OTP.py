@@ -16,18 +16,18 @@ class OTP(NDComponent):
     updates = ["I"]  # current
     params = [
         "br",
-        "gamma",
         "dr",
-        "c1",
+        "gamma",
+        "a1",
+        "b1",
         "a2",
         "b2",
         "a3",
         "b3",
-        "k23",
-        "CCR",
-        "ICR",
-        "L",
-        "W",
+        "kappa",
+        "p",
+        "c",
+        "Imax"
     ]
     internals = OrderedDict(
         [("v", 0.0), ("uh", 0.0), ("duh", 0.0), ("x1", 0.0), ("x2", 0.0), ("x3", 0.0)]
@@ -46,9 +46,9 @@ class OTP(NDComponent):
         cuda_verbose=False,
     ):
         if cuda_verbose:
-            self.compile_options = ["--ptxas-options=-v"]
+            self.compile_options = ["--ptxas-options=-v", "--expt-relaxed-constexpr"]
         else:
-            self.compile_options = []
+            self.compile_options = ["--expt-relaxed-constexpr"]
 
         self.debug = debug
         self.LPU_id = LPU_id

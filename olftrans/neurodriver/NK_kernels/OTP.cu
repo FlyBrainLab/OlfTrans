@@ -1,3 +1,5 @@
+#define  V_MIN		0
+#define  V_MAX		1000000000.0
 #define  UH_MIN		0.0
 #define  UH_MAX		50000.0
 #define  X1_MIN		0.0
@@ -28,6 +30,8 @@ struct Derivatives {
 
 __device__ void clip(States &states)
 {
+    states.v = fmax(states.v, V_MIN);
+    states.v = fmin(states.v, V_MAX);
     states.uh = fmax(states.uh, UH_MIN);
     states.uh = fmin(states.uh, UH_MAX);
     states.x1 = fmax(states.x1, X1_MIN);
@@ -55,32 +59,31 @@ __device__ int ode(
     States &states,
     Derivatives &gstates,
     double BR,
-    double GAMMA,
     double DR,
-    double C1,
+    double GAMMA,
+    double A1,
+    double B1,
     double A2,
     double B2,
     double A3,
     double B3,
-    double K23,
-    double CCR,
-    double ICR,
-    double L,
-    double W,
+    double KAPPA,
+    double P,
+    double C,
+    double IMAX,
     double &stimulus
 )
 {
     double f;
 
-    gstates.uh = states.duh;
-    gstates.duh = ((((-2 * W) * L) * states.duh) + ((W * W) * (stimulus - states.uh)));
-    states.v = (states.uh + (GAMMA * states.duh));
-    states.v = ((states.v > 0) * states.v);
-    gstates.x1 = ((((C1 * BR) * states.v) * (1.0 - states.x1)) - (DR * states.x1));
+    gstates.x1 = (((BR * states.v) * (1.0 - states.x1)) - (DR * states.x1));
     f = (cbrt((states.x2 * states.x2)) * cbrt((states.x3 * states.x3)));
-    gstates.x2 = ((((A2 * states.x1) * (1.0 - states.x2)) - (B2 * states.x2)) - (K23 * f));
+    gstates.x2 = ((((A2 * states.x1) * (1.0 - states.x2)) - (B2 * states.x2)) - (KAPPA * f));
     gstates.x3 = ((A3 * states.x2) - (B3 * states.x3));
-    states.I = ((ICR * states.x2) / (states.x2 + CCR));
+    states.I = ((IMAX * states.x2) / (states.x2 + C));
+    gstates.uh = states.duh;
+    gstates.duh = ((((-2 * A1) * B1) * states.duh) + ((A1 * A1) * (stimulus - states.uh)));
+    states.v = (states.uh + (GAMMA * states.duh));
     return 0;
 }
 
@@ -96,18 +99,18 @@ __global__ void OTP (
     double *g_x2,
     double *g_x3,
     double *g_br,
-    double *g_gamma,
     double *g_dr,
-    double *g_c1,
+    double *g_gamma,
+    double *g_a1,
+    double *g_b1,
     double *g_a2,
     double *g_b2,
     double *g_a3,
     double *g_b3,
-    double *g_k23,
-    double *g_CCR,
-    double *g_ICR,
-    double *g_L,
-    double *g_W,
+    double *g_kappa,
+    double *g_p,
+    double *g_c,
+    double *g_Imax,
     double *g_stimulus,
     double *g_I
 )
@@ -130,41 +133,38 @@ __global__ void OTP (
         states.x2 = g_x2[nid];
         states.x3 = g_x3[nid];
         double BR = g_br[nid];
-        double GAMMA = g_gamma[nid];
         double DR = g_dr[nid];
-        double C1 = g_c1[nid];
+        double GAMMA = g_gamma[nid];
+        double A1 = g_a1[nid];
+        double B1 = g_b1[nid];
         double A2 = g_a2[nid];
         double B2 = g_b2[nid];
         double A3 = g_a3[nid];
         double B3 = g_b3[nid];
-        double K23 = g_k23[nid];
-        double CCR = g_CCR[nid];
-        double ICR = g_ICR[nid];
-        double L = g_L[nid];
-        double W = g_W[nid];
+        double KAPPA = g_kappa[nid];
+        double P = g_p[nid];
+        double C = g_c[nid];
+        double IMAX = g_Imax[nid];
         double stimulus = g_stimulus[nid];
 
-        
-        
         /* compute gradient */
-        ode(states, gstates, BR, GAMMA, DR, C1, A2, B2, A3, B3, K23, CCR, ICR, L, W, stimulus);
+        ode(states, gstates, BR, DR, GAMMA, A1, B1, A2, B2, A3, B3, KAPPA, P, C, IMAX, stimulus);
 
         /* solve ode */
         forward(states, gstates, dt);
 
         /* clip */
-        clip(states);
-
-        
+        clip(states);        
 
         /* export data */
         g_v[nid] = states.v;
+        g_I[nid] = states.I;
         g_uh[nid] = states.uh;
         g_duh[nid] = states.duh;
         g_x1[nid] = states.x1;
         g_x2[nid] = states.x2;
         g_x3[nid] = states.x3;
-	    g_I[nid] = states.I;
+        // printf("(%f, %f), (%f,%f), (%.f, %f)\n", gstates.x1, g_x1[nid], gstates.x2, g_x2[nid], gstates.x3, g_x3[nid]);
     }
 
     return;
