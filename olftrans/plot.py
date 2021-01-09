@@ -175,8 +175,7 @@ def plot_mat(
     cbar_kw: dict = None,
     cmap: tp.Any = None,
 ) -> tp.Union[tp.Tuple[plt.Axes, tp.Any], plt.Axes]:
-    """
-    Plot Matrix with formatted time axes
+    """Plot Matrix with formatted time axes
 
     Arguments:
         mat: the matrix to be plotted, it should of shape (N, Time)
@@ -192,8 +191,7 @@ def plot_mat(
 
     Returns:
         ax: the axis that the raster is plotted into
-        cbar: colorbar object
-            - only returned if cax is `True` or a `plt.Axes` instance
+        cbar: colorbar object, only returned if cax is `True` or a `plt.Axes` instance
 
     Example:
         >>> dt, dur, start, stop = 1e-4, 2, 0.5, 1.0

@@ -70,7 +70,7 @@ class FBL:
         default_factory=lambda: [ndcomp.OTP, ndcomp.NoisyConnorStevens]
     )
     config: Config = field(default=None)
-    reference_data: pd.DataFrame = field(default=None, init=None)
+    affinities: pd.DataFrame = field(default=None, init=None)
 
     @classmethod
     def create_from_config(cls, cfg: Config):
@@ -122,7 +122,7 @@ class FBL:
             self.config = FBL.get_config(self.graph)
 
     @classmethod
-    def get_config(cls, fbl):
+    def get_config(cls, fbl) -> Config:
         import pandas as pd
 
         df = pd.DataFrame.from_dict(dict(fbl.graph.nodes(data=True)), orient="index")
@@ -148,7 +148,7 @@ class FBL:
             sigma=sigma,
         )
 
-    def update_affs(self, affs):
+    def update_affs(self, affs) -> None:
         """Update Affinities and Change Circuit Accordingly"""
         assert isinstance(affs, dict)
 
@@ -167,8 +167,8 @@ class FBL:
                 continue
 
     def update_graph_attributes(
-        self, data_dict, nodes="otp", receptor=None, node_predictive=None
-    ):
+        self, data_dict: dict, nodes: str = "otp", receptor: tp.Iterable[str] = None, node_predictive: tp.Callable = None
+    ) -> None:
         """
 
         Example:
@@ -192,7 +192,7 @@ class FBL:
         update_dict = {_id: data_dict for _id in node_uids}
         nx.set_node_attributes(self.graph, update_dict)
 
-    def simulate(self, t, inputs, record_var_list=None, sample_interval=1):
+    def simulate(self, t: np.ndarray, inputs: tp.Any, record_var_list: tp.Iterable[tp.Tuple[str, tp.Iterable]] = None, sample_interval: int = 1):
         """Update Affinities and Change Circuit Accordingly"""
         from neurokernel.LPU.LPU import LPU
         from neurokernel.LPU.InputProcessors.BaseInputProcessor import (
@@ -218,7 +218,7 @@ class FBL:
         lpu = LPU(
             dt,
             "obj",
-            G,
+            self.graph,
             device=0,
             id=f"OlfTrans",
             input_processors=[fi],
@@ -253,10 +253,10 @@ larva_cfg = Config(
     affs=np.zeros((21,)),
     NO=1,
     drs=10.0,
-    resting=10.0,
+    resting=8.0,
 )
 LARVA = FBL.create_from_config(larva_cfg)
-LARVA.reference_data = load_larva_reference(larva_cfg)
+LARVA.affinities = load_larva_reference(larva_cfg)
 
 adult_cfg = Config(
     affs=np.zeros((51,)),
@@ -265,4 +265,4 @@ adult_cfg = Config(
     resting=8.0,
 )
 ADULT = FBL.create_from_config(adult_cfg)
-ADULT.reference_data = load_adult_reference(adult_cfg)
+ADULT.affinities = load_adult_reference(adult_cfg)

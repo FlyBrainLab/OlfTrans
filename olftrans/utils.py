@@ -1,13 +1,4 @@
-"""
-Utility functions for simulating the synapse and neuron models.
-
-
-Methods:
-    generate_stimulus: generate stimuli; currently support `step`, `ramp` and
-        `parabolic` stimuli.
-    generate_spike_from_psth: generate spike sequences from a PSTH.
-    compute_psth: compute PSTH from a set of spike sequences.
-"""
+"""Utility functions for simulating the synapse and neuron models."""
 
 import struct
 import zlib
@@ -47,16 +38,16 @@ def generate_stimulus(
     Stimuli generator
 
     Arguments:
-        mode (str): shape of the waveform.
-        d_t (float): the sampling interval for the stimuli.
-        duration (float): the duration of the stimuli.
-        support (iterable): two time points at which the stimulus [start, end).
+        mode: shape of the waveform.
+        d_t: the sampling interval for the stimuli.
+        duration: the duration of the stimuli.
+        support: two time points at which the stimulus [start, end).
            It's not inclusive of the end.
-        amplitude (float or list): the amplitudes of the stimuli.
+        amplitude (float o: the amplitudes of the stimuli.
 
     Keyword Arguments:
-        sigma (float): variance of zero-mean Gaussian noise added to the waveform.
-        ratio (float): a
+        sigma: variance of zero-mean Gaussian noise added to the waveform.
+        ratio: a
 
     """
 
@@ -88,8 +79,8 @@ def generate_stimulus(
         """
         Generate a set of ramp stimuli.
 
-        keyword arguments:
-            ratio (float): a real number between 0 and 1. The point between
+        keyword Arguments:
+            ratio: a real number between 0 and 1. The point between
                 `start` and `stop` where the stimulus reachs its peak.
         """
         ratio = kwargs.pop("ratio", 0.9)
@@ -109,11 +100,10 @@ def generate_stimulus(
         amplitude: float,
         **kwargs,
     ) -> None:
-        """
-        Generate a set of parabolic stimuli.
+        """Generate a set of parabolic stimuli
 
-        keyword arguments:
-            ratio (float): a real number between 0 and 1. The point between
+        keyword Arguments:
+            ratio: a real number between 0 and 1. The point between
                 `start` and `stop` where the stimulus reachs its peak.
         """
         ratio = kwargs.pop("ratio", 0.95)
@@ -133,10 +123,9 @@ def generate_stimulus(
         amplitude: float,
         **kwargs,
     ) -> None:
-        """
-        Generate a set of poisson spikes.
+        """Generate a set of poisson spikes
 
-        Note:
+        Notes:
             The amplitude argument is used as rate in a Poisson Process
             from which the spikes are generated
         """
@@ -172,8 +161,7 @@ def generate_stimulus(
 def generate_spike_from_psth(
     d_t: float, psth: np.ndarray, psth_t: np.ndarray = None, num: int = 1
 ) -> tp.Tuple[np.ndarray, np.ndarray]:
-    """
-    Generate spike sequeces from a PSTH.
+    """Generate spike sequeces from a PSTH
 
     Arguments:
         d_t: the sampling interval of the input waveform.
@@ -245,19 +233,18 @@ def generate_spike_from_psth(
 
 def compute_psth(
     spikes: np.ndarray, d_t: float, window: float, interval: float
-) -> np.ndarray:
-    """
-    Compute the peri-stimulus time histogram.
+) -> tp.Tuple[np.ndarray,np.ndarray]:
+    """Compute the peri-stimulus time histogram
 
     Arguments:
-        spikes (np.ndarray): spike sequences.
-        d_t (float): time step.
-        window (float): the size of the window.
-        interval (float): the time shift between two consecutive windows.
+        spikes: spike sequences.
+        d_t: time step.
+        window: the size of the window.
+        interval: the time shift between two consecutive windows.
 
     Returns:
-        rates (np.ndarray): the average spike rate for each windows.
-        stamps (np.ndarray): the time stamp for each windows.
+        rates: the average spike rate for each windows.
+        stamps: the time stamp for each windows.
     """
     spikes = np.asarray(spikes)
 
