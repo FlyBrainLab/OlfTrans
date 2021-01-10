@@ -1,27 +1,6 @@
-"""Utility functions for simulating the synapse and neuron models."""
-
-import struct
-import zlib
+"""Utility functions for simulating the synapse and neuron models"""
 import typing as tp
-from binascii import unhexlify
 import numpy as np
-
-
-def chunk(type, data):
-    return (
-        struct.pack(">I", len(data))
-        + type
-        + data
-        + struct.pack(">I", zlib.crc32(type + data))
-    )
-
-
-MINIMUM_PNG = (
-    b"\x89PNG\r\n\x1A\n"
-    + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 6, 0, 0, 0))
-    + chunk(b"IDAT", unhexlify(b"789c6300010000050001"))
-    + chunk(b"IEND", b"")
-)
 
 
 def generate_stimulus(
@@ -47,8 +26,10 @@ def generate_stimulus(
 
     Keyword Arguments:
         sigma: variance of zero-mean Gaussian noise added to the waveform.
-        ratio: a
+        dtype: data type of the return array
 
+    Returns:
+        generate stimulus of shape (NTime, NTrial)
     """
 
     def _generate_step(
@@ -194,6 +175,7 @@ def generate_spike_from_psth(
         >>> psth, psth_t = utils.PSTH(spikes, d_t=dt, window=20e-3, shift=10e-3).compute()
         >>> tt, spikes = utils.generate_spike_from_psth(dt, psth, psth_t)
         >>> plot.plot_spikes(spikes, t=tt)
+
     """
     psth = np.asarray(psth)
     psth_t = np.asarray(psth_t)
@@ -227,13 +209,12 @@ def generate_spike_from_psth(
             )
             < d_t * rate
         )
-
     return t, np.ascontiguousarray(spikes.T)
 
 
 def compute_psth(
     spikes: np.ndarray, d_t: float, window: float, interval: float
-) -> tp.Tuple[np.ndarray,np.ndarray]:
+) -> tp.Tuple[np.ndarray, np.ndarray]:
     """Compute the peri-stimulus time histogram
 
     Arguments:

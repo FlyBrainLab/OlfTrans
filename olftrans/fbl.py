@@ -1,3 +1,13 @@
+"""FlyBrainLab compatible module
+
+Classes:
+    Config: configuration of FBL Module
+    FBL: FlyBrainLab-compatible module to be consumed by other FBL packages
+
+Attributes:
+    LARVA: an instance of FBL class that is loaded with Larva (Kreher2005) data
+    ADULT: an instance of FBL class that is loaded with Adult (HallemCarlson20016) data
+"""
 import os
 import numpy as np
 import networkx as nx
@@ -15,15 +25,25 @@ from warnings import warn
 
 @dataclass
 class Config:
-    NR: int = field(repr="Number of Receptor Types", init=False)
-    NO: tp.Iterable[int] = field(repr="Number of OSNs per Receptor Type")
-    affs: tp.Iterable[float] = field(repr="Affinity Values")
-    drs: tp.Iterable[float] = field(default=None, repr="Dissociation Rates")
-    receptor_names: tp.Iterable[str] = field(default=None)
-    resting: float = field(default=None, repr="Resting OSN Spike Rates [Hz]")
-    sigma: float = field(
-        default=None, repr="NoisyConnorStevens Noise Standard Deviation"
-    )
+    """Configuration for FlyBrainLab-compatible Module
+
+    Attributes:
+        NR: Number of Receptor Types
+        NO: Number of OSNs per Receptor Type
+        affs: Affinity Values
+        drs: Dissociation Rates
+        receptor_names: Name of receptors of length NR
+        resting: Resting OSN Spike Rates [Hz]
+        sigma: NoisyConnorStevens Noise Standard Deviation
+    """
+
+    NR: int = field(init=False)
+    NO: tp.Iterable[int]
+    affs: tp.Iterable[float]
+    drs: tp.Iterable[float] = None
+    receptor_names: tp.Iterable[str] = None
+    resting: float = None
+    sigma: float = None
 
     def __post_init__(self):
         self.affs = np.asarray(self.affs)
@@ -63,18 +83,38 @@ class Config:
 
 @dataclass
 class FBL:
+    """FlyBrainLab-compatible Module
+
+    Attributes:
+        graph: networkx graph describing the executable circuit
+        inputs: input variable and uids dictionary
+        outputs: input variable and uids dictionary
+        extra_comps: list of neurodriver extra components
+        config: configuration
+        affinities: a pandas dataframe with affinities saved as reference
+            - index: odorants
+            - columns: receptor names
+    """
+
     graph: nx.MultiDiGraph
-    inputs: tp.List[tp.Tuple[str, tp.Iterable[str]]]
-    outputs: tp.List[tp.Tuple[str, tp.Iterable[str]]]
+    inputs: dict
+    outputs: dict
     extra_comps: tp.List[NDComponent] = field(
         default_factory=lambda: [ndcomp.OTP, ndcomp.NoisyConnorStevens]
     )
-    config: Config = field(default=None)
+    config: Config = None
     affinities: pd.DataFrame = field(default=None, init=None)
 
     @classmethod
     def create_from_config(cls, cfg: Config):
-        """Create Instance from Config"""
+        """Create Instance from Config
+
+        Arguments:
+            cfg: Config instance that specifies the configuration of the module
+
+        Returns:
+            A new FBL instance
+        """
         G = nx.MultiDiGraph()
         bsg_params = copy.deepcopy(model.NoisyConnorStevens.params)
         bsg_params.update(sigma=cfg.sigma)
@@ -113,16 +153,18 @@ class FBL:
                 bsg_uids.append(bsg_id)
         otp_uids = np.asarray(otp_uids, dtype="str")
         bsg_uids = np.asarray(bsg_uids, dtype="str")
-        inputs = [("conc", otp_uids)]
-        outputs = [("V", bsg_uids), ("spike_state", bsg_uids)]
+        inputs = {"conc": otp_uids}
+        outputs = {"V": bsg_uids, "spike_state": bsg_uids}
         return cls(graph=G, inputs=inputs, outputs=outputs, config=cfg)
 
     def __post_init__(self):
+        """Parse config from graph if not specified"""
         if self.config is None:
-            self.config = FBL.get_config(self.graph)
+            self.config = FBL.get_config(self)
 
     @classmethod
     def get_config(cls, fbl) -> Config:
+        """Parse Config from given FBL instance"""
         import pandas as pd
 
         df = pd.DataFrame.from_dict(dict(fbl.graph.nodes(data=True)), orient="index")
@@ -167,18 +209,30 @@ class FBL:
                 continue
 
     def update_graph_attributes(
-        self, data_dict: dict, nodes: str = "otp", receptor: tp.Iterable[str] = None, node_predictive: tp.Callable = None
+        self,
+        data_dict: dict,
+        nodes: tp.Union["otp", "bsg"] = "otp",
+        receptor: tp.Iterable[str] = None,
+        node_predictive: tp.Callable[[nx.classes.reportviews.NodeView], bool] = None,
     ) -> None:
-        """
+        """Update Attributes of the graph
+
+        Arguments:
+            data_dict: a dictionary of {attr: value}
+
+        Keyword Arguments:
+            nodes: nodes to update, 'otp' or 'bsg'
+            receptor: filter nodes with receptor
+            node_predictive: additional filtering of nodes from `nx.nodes` call
 
         Example:
             >>> fbl.update_graph_attributes({'sigma':1.}, nodes='bsg', receptor=None)
         """
         if node_predictive is None:
             node_predictive = lambda node_id, data: True
-        if nodes == "otp":
+        if nodes.lower() == "otp":
             clsname = "OTP"
-        elif nodes == "bsg":
+        elif nodes.lower() == "bsg":
             clsname = "NoisyConnorStevens"
         else:
             raise ValueError("nodes need to be 'otp' or 'bsg'")
@@ -192,8 +246,31 @@ class FBL:
         update_dict = {_id: data_dict for _id in node_uids}
         nx.set_node_attributes(self.graph, update_dict)
 
-    def simulate(self, t: np.ndarray, inputs: tp.Any, record_var_list: tp.Iterable[tp.Tuple[str, tp.Iterable]] = None, sample_interval: int = 1):
-        """Update Affinities and Change Circuit Accordingly"""
+    def simulate(
+        self,
+        t: np.ndarray,
+        inputs: tp.Any,
+        record_var_list: tp.Iterable[tp.Tuple[str, tp.Iterable]] = None,
+        sample_interval: int = 1,
+    ) -> tp.Tuple["FileInput", "FileOutput", "LPU"]:
+        """
+        Update Affinities and Change Circuit Accordingly
+
+        Arguments:
+            t: input time array
+            inputs: input data
+                - if is `BaseInputProcessor` instance, passed to LPU directly
+                - if is dictionary, passed to ArrayInputProcessor if is compatible
+
+        Keyword Argumnets:
+            record_var_list: [(var, uids)]
+            sample_interval: interval at which output is recorded
+
+        Returns:
+            fi: Input Processor
+            fo: Output Processor
+            lpu: LPU instance
+        """
         from neurokernel.LPU.LPU import LPU
         from neurokernel.LPU.InputProcessors.BaseInputProcessor import (
             BaseInputProcessor,
@@ -228,10 +305,11 @@ class FBL:
             extra_comps=self.extra_comps,
         )
         lpu.run(steps=len(t))
-        return (fi, fo), lpu
+        return fi, fo, lpu
 
 
-def load_adult_reference(cfg):
+def load_adult_affinities(cfg):
+    """Load HallemCarlson Spike Data and Parse to Affinities"""
     df = data.HallemCarlson.DATA
     df = df[~df.isna()]
     est = estimate(100.0, cfg.resting, df.values, decay_time=0.1, cache=True)
@@ -240,7 +318,8 @@ def load_adult_reference(cfg):
     return df_aff
 
 
-def load_larva_reference(cfg):
+def load_larva_affinities(cfg):
+    """Load HallemCarlson Spike Data and Parse to Affinities"""
     df = data.Kreher.DATA
     df = df[~df.isna()]
     est = estimate(100.0, cfg.resting, df.values, decay_time=0.1, cache=True)
@@ -256,7 +335,7 @@ larva_cfg = Config(
     resting=8.0,
 )
 LARVA = FBL.create_from_config(larva_cfg)
-LARVA.affinities = load_larva_reference(larva_cfg)
+LARVA.affinities = load_larva_affinities(larva_cfg)
 
 adult_cfg = Config(
     affs=np.zeros((51,)),
@@ -265,4 +344,4 @@ adult_cfg = Config(
     resting=8.0,
 )
 ADULT = FBL.create_from_config(adult_cfg)
-ADULT.affinities = load_adult_reference(adult_cfg)
+ADULT.affinities = load_adult_affinities(adult_cfg)

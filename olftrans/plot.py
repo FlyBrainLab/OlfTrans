@@ -1,6 +1,4 @@
-"""
-Plotting functions.
-"""
+"""Plotting functions"""
 import typing as tp
 from warnings import warn
 import matplotlib as mpl
@@ -127,6 +125,8 @@ def plot_spikes(
     Arguments:
         spikes: the spike states in binary format, where 1 stands for a spike.
             The shape of the spikes should either be (N_times, ) or (N_trials, N_times)
+
+    Keyword Arguments:
         t: time axes for the spikes, use arange if not provided
         ax: which axis to plot into, create one if not provided
         markersize: size of raster
@@ -179,6 +179,8 @@ def plot_mat(
 
     Arguments:
         mat: the matrix to be plotted, it should of shape (N, Time)
+
+    Keyword Arguments:
         t: time axes for the spikes, use arange if not provided
         ax: which axis to plot into, create one if not provided
         cax: which axis to plot colorbar into
@@ -241,8 +243,18 @@ def plot_mat(
         return (ax,)
 
 
-def yyaxis(ax, c="red"):
-    """Create A second axis with colored spine/ticks/label"""
+def yyaxis(ax: plt.Axes, c: "color" = "red") -> plt.Axes:
+    """Create A second axis with colored spine/ticks/label
+
+    Arguments:
+        ax: ax to create another y-axis from
+
+    Keyword Arguments:
+        c: Color
+
+    Returns:
+        ax2: axis that shares x with `ax`
+    """
     ax2 = ax.twinx()
     ax2.spines["right"].set_color(c)
     ax2.tick_params(axis="y", colors=c)

@@ -27,7 +27,7 @@ class OTP(NDComponent):
         "kappa",
         "p",
         "c",
-        "Imax"
+        "Imax",
     ]
     internals = OrderedDict(
         [("v", 0.0), ("uh", 0.0), ("duh", 0.0), ("x1", 0.0), ("x2", 0.0), ("x3", 0.0)]
