@@ -8,19 +8,22 @@ Installation
 Stable release
 --------------
 
-To install OlfTrans, run this command in your terminal:
+Olftrans is not currently served on PyPI. 
+Refer to section below for building the pacakge from source.
 
-.. code-block:: console
+.. To install OlfTrans, run this command in your terminal:
 
-    $ pip install olftrans
+.. .. code-block:: console
 
-This is the preferred method to install OlfTrans, as it will always install the most recent stable release.
+..     $ pip install olftrans
 
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
+.. This is the preferred method to install OlfTrans, as it will always install the most recent stable release.
 
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+.. If you don't have `pip`_ installed, this `Python installation guide`_ can guide
+.. you through the process.
+
+.. .. _pip: https://pip.pypa.io
+.. .. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
 
 
 From sources
