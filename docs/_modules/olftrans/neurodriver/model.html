@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.neurodriver.model &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">olftrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>olftrans.neurodriver.model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for olftrans.neurodriver.model</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;NeuroDriver Models and Utilities</span>
+
+<span class="sd">Examples:</span>
+<span class="sd">    1. Compute F-I </span>
+<span class="sd">    &gt;&gt;&gt; from olftrans.neurodriver import model</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; dt = 5e-6</span>
+<span class="sd">    &gt;&gt;&gt; repeat = 50</span>
+<span class="sd">    &gt;&gt;&gt; Is = np.linspace(0,150,150)</span>
+<span class="sd">    &gt;&gt;&gt; _, fs = model.compute_fi(model.NoisyConnorStevens, Is, dt=dt, repeat=repeat, save=True)</span>
+<span class="sd">    </span>
+<span class="sd">    2. Compute Resting Spike Rate</span>
+<span class="sd">    &gt;&gt;&gt; from olftrans.neurodriver import model</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; dt = 5e-6</span>
+<span class="sd">    &gt;&gt;&gt; repeat = 50</span>
+<span class="sd">    &gt;&gt;&gt; sigmas = np.linspace(0,0.005,150)</span>
+<span class="sd">    &gt;&gt;&gt; _, rest_fs = model.compute_resting(model.NoisyConnorStevens, &#39;sigma&#39;, sigmas/np.sqrt(dt), dt=dt, repeat=repeat, save=True)</span>
+
+<span class="sd">    3. Compute Peak and SS Currents of OTP</span>
+<span class="sd">    &gt;&gt;&gt; from olftrans.neurodriver import model</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; dt, amplitude = 5e-6, 100.</span>
+<span class="sd">    &gt;&gt;&gt; br_s = np.linspace(1e-2, 1000., 50)</span>
+<span class="sd">    &gt;&gt;&gt; dr_s = np.linspace(1e-2, 1000., 50)</span>
+<span class="sd">    &gt;&gt;&gt; _, _, I_ss, I_peak = model.compute_peak_ss_I(br_s, dr_s, dt=dt, amplitude=amplitude, save=True)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">neuroballad.models.element</span> <span class="kn">import</span> <span class="n">Element</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">ROOTDIR</span><span class="p">,</span> <span class="n">DATADIR</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">savgol_filter</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">NDComponents</span>
+<span class="kn">from</span> <span class="nn">..data</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">utils</span>
+
+
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;NeuroBallad Element that also wraps the underlying NDComponent&quot;&quot;&quot;</span>
+
+    <span class="n">_ndcomp</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="OTP"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.OTP">[docs]</a><span class="k">class</span> <span class="nc">OTP</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Odorant Transduction Process</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">element_class</span> <span class="o">=</span> <span class="s2">&quot;neuron&quot;</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;uh&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;duh&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;x3&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">br</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">dr</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="mf">0.215</span><span class="p">,</span>
+        <span class="n">b1</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">a1</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span>
+        <span class="n">a2</span><span class="o">=</span><span class="mf">146.1</span><span class="p">,</span>
+        <span class="n">b2</span><span class="o">=</span><span class="mf">117.2</span><span class="p">,</span>
+        <span class="n">a3</span><span class="o">=</span><span class="mf">2.539</span><span class="p">,</span>
+        <span class="n">b3</span><span class="o">=</span><span class="mf">0.9096</span><span class="p">,</span>
+        <span class="n">kappa</span><span class="o">=</span><span class="mf">8841.0</span><span class="p">,</span>
+        <span class="n">p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">c</span><span class="o">=</span><span class="mf">0.06546</span><span class="p">,</span>
+        <span class="n">Imax</span><span class="o">=</span><span class="mf">62.13</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_ndcomp</span> <span class="o">=</span> <span class="n">NDComponents</span><span class="o">.</span><span class="n">OTP</span></div>
+
+
+<div class="viewcode-block" id="NoisyConnorStevens"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.NoisyConnorStevens">[docs]</a><span class="k">class</span> <span class="nc">NoisyConnorStevens</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Noisy Connor-Stevens Neuron Model</span>
+
+<span class="sd">    F-I curve is controlled by `sigma` parameter</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        `sigma` value should be scaled by `sqrt(dt)` as `sigma/sqrt(dt)`</span>
+<span class="sd">        where `sigma` is the standard deviation of the Brownian Motion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">states</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">v1</span><span class="o">=-</span><span class="mf">60.0</span><span class="p">,</span> <span class="n">v2</span><span class="o">=-</span><span class="mf">60.0</span><span class="p">,</span> <span class="n">refactory</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">ms</span><span class="o">=-</span><span class="mf">5.3</span><span class="p">,</span>
+        <span class="n">ns</span><span class="o">=-</span><span class="mf">4.3</span><span class="p">,</span>
+        <span class="n">hs</span><span class="o">=-</span><span class="mf">12.0</span><span class="p">,</span>
+        <span class="n">gNa</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span>
+        <span class="n">gK</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>
+        <span class="n">gL</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">ga</span><span class="o">=</span><span class="mf">47.7</span><span class="p">,</span>
+        <span class="n">ENa</span><span class="o">=</span><span class="mf">55.0</span><span class="p">,</span>
+        <span class="n">EK</span><span class="o">=-</span><span class="mf">72.0</span><span class="p">,</span>
+        <span class="n">EL</span><span class="o">=-</span><span class="mf">17.0</span><span class="p">,</span>
+        <span class="n">Ea</span><span class="o">=-</span><span class="mf">75.0</span><span class="p">,</span>
+        <span class="n">sigma</span><span class="o">=</span><span class="mf">2.05</span><span class="p">,</span>
+        <span class="n">refperiod</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_ndcomp</span> <span class="o">=</span> <span class="n">NDComponents</span><span class="o">.</span><span class="n">NoisyConnorStevens</span></div>
+
+
+<div class="viewcode-block" id="compute_fi"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.compute_fi">[docs]</a><span class="k">def</span> <span class="nf">compute_fi</span><span class="p">(</span>
+    <span class="n">NeuronModel</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">Is</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">input_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span>
+    <span class="n">spike_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;spike_state&quot;</span><span class="p">,</span>
+    <span class="n">dur</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">neuron_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute Frequency-Current relationship of Neuron</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        If `save==True`, `olftrans.data.data.olfdata.save` is called.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Is: 1d array of Currents</span>
+<span class="sd">        spike_rates: 1d array Spiking Frequencies, dimension matches param_values</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Basic Usage:</span>
+<span class="sd">        &gt;&gt;&gt; from olftrans.neurodriver.model import NoisyConnorStevens</span>
+<span class="sd">        &gt;&gt;&gt; Is = np.linspace(0., 150, 100)</span>
+<span class="sd">        &gt;&gt;&gt; dt = 1e-5</span>
+<span class="sd">        &gt;&gt;&gt; _, fs = compute_fi(NoisyConnorStevens, Is, repeat=50, dt=dt, neuron_params={&#39;sigma&#39;: 0.005/np.sqrt(dt)})</span>
+
+<span class="sd">        We can look for the input current value from spike rate</span>
+<span class="sd">        &gt;&gt;&gt; target_spike_rate = 150.  # [Hz]</span>
+<span class="sd">        &gt;&gt;&gt; target_I = np.interp(x=target_spike_rate, xp=fs, fp=fs)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.LPU</span> <span class="kn">import</span> <span class="n">LPU</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.StepInputProcessor</span> <span class="kn">import</span> <span class="n">StepInputProcessor</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.OutputProcessors.OutputRecorder</span> <span class="kn">import</span> <span class="n">OutputRecorder</span>
+
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">dur</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">clsname</span> <span class="o">=</span> <span class="n">NeuronModel</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="n">Is</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">Is</span><span class="p">)</span>
+    <span class="n">neuron_params</span> <span class="o">=</span> <span class="n">neuron_params</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">NeuronModel</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">neuron_params</span><span class="p">)</span>
+
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
+    <span class="n">csn_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Is</span><span class="p">),</span> <span class="n">repeat</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_I</span><span class="p">,</span> <span class="n">_I</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Is</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2">-I</span><span class="si">{</span><span class="n">n_I</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">_id</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">clsname</span><span class="p">},</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">csn_ids</span><span class="p">[</span><span class="n">n_I</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">_id</span>
+
+    <span class="n">fi</span> <span class="o">=</span> <span class="n">StepInputProcessor</span><span class="p">(</span>
+        <span class="n">variable</span><span class="o">=</span><span class="n">input_var</span><span class="p">,</span>
+        <span class="n">uids</span><span class="o">=</span><span class="n">csn_ids</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+        <span class="n">val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">Is</span><span class="p">,</span> <span class="n">repeat</span><span class="p">),</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="n">OutputRecorder</span><span class="p">([(</span><span class="n">spike_var</span><span class="p">,</span> <span class="kc">None</span><span class="p">)])</span>
+
+    <span class="n">lpu</span> <span class="o">=</span> <span class="n">LPU</span><span class="p">(</span>
+        <span class="n">dt</span><span class="p">,</span>
+        <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;F-I </span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">input_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fi</span><span class="p">],</span>
+        <span class="n">output_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fo</span><span class="p">],</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">manager</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extra_comps</span><span class="o">=</span><span class="p">[</span><span class="n">NeuronModel</span><span class="o">.</span><span class="n">_ndcomp</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">lpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+    <span class="n">Nspikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Is</span><span class="p">),</span> <span class="n">repeat</span><span class="p">))</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">get_output</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="n">spike_var</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_I</span><span class="p">,</span> <span class="n">_I</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Is</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2">-I</span><span class="si">{</span><span class="n">n_I</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">Nspikes</span><span class="p">[</span><span class="n">n_I</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+                    <span class="n">spikes</span><span class="p">[</span><span class="n">_id</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">,</span> <span class="n">spikes</span><span class="p">[</span><span class="n">_id</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">stop</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+    <span class="n">spike_rates</span> <span class="o">=</span> <span class="n">Nspikes</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">olfdata</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+            <span class="s2">&quot;FI&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataFI</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">clsname</span><span class="p">,</span>
+                <span class="n">Currents</span><span class="o">=</span><span class="n">Is</span><span class="p">,</span>
+                <span class="n">Frequencies</span><span class="o">=</span><span class="n">spike_rates</span><span class="p">,</span>
+                <span class="n">InputVar</span><span class="o">=</span><span class="n">input_var</span><span class="p">,</span>
+                <span class="n">SpikeVar</span><span class="o">=</span><span class="n">spike_var</span><span class="p">,</span>
+                <span class="n">Params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">val</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;sigma&quot;</span> <span class="k">else</span> <span class="n">val</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">neuron_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="n">Repeats</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataMetadata</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="n">dur</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">Is</span><span class="p">,</span> <span class="n">spike_rates</span></div>
+
+
+<div class="viewcode-block" id="compute_peak_ss_I"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.compute_peak_ss_I">[docs]</a><span class="k">def</span> <span class="nf">compute_peak_ss_I</span><span class="p">(</span>
+    <span class="n">br_s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">dr_s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">dur</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="n">steady_state_compute_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute Peak and Steady-State Current output of OTP Model</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        if `save==True`, `olftrans.data.data.olfdata.save` is called.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        br_s: 1d array of binding rate</span>
+<span class="sd">        dr_s: 1d array of dissociation rate</span>
+<span class="sd">        I_ss: 2d array of resultant steady-state currents</span>
+<span class="sd">        I_peak: 2d array of resultant peak currents</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Basic Usage:</span>
+<span class="sd">        &gt;&gt;&gt; br_s = np.linspace(1e-1, 100., 100)</span>
+<span class="sd">        &gt;&gt;&gt; dr_s = np.linspace(1e-1, 100., 100)</span>
+<span class="sd">        &gt;&gt;&gt; _, _, I_ss, I_peak = compute_peak_ss_I(br_s, dr_s, save=True)</span>
+
+<span class="sd">        Plotting Steady-State Current against affinity:</span>
+<span class="sd">        &gt;&gt;&gt; DR, BR = np.meshgrid(dr_s, br_s)</span>
+<span class="sd">        &gt;&gt;&gt; plt.plot((BR/DR).ravel(), I_ss.ravel()) # steady-state current is only dependent on dissociation</span>
+
+<span class="sd">        We can also look for the affinity value from steady-state Current output</span>
+<span class="sd">        &gt;&gt;&gt; target_I = 50.  # [uA]</span>
+<span class="sd">        &gt;&gt;&gt; target_aff = np.interp(x=target_I, xp=I_ss.ravel(), fp=(BR/DR).ravel())</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.LPU</span> <span class="kn">import</span> <span class="n">LPU</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.StepInputProcessor</span> <span class="kn">import</span> <span class="n">StepInputProcessor</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.OutputProcessors.OutputRecorder</span> <span class="kn">import</span> <span class="n">OutputRecorder</span>
+
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">dur</span>
+    <span class="k">if</span> <span class="n">steady_state_compute_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">steady_state_compute_time</span> <span class="o">=</span> <span class="n">stop</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
+    <span class="n">otp_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;OTP-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">OTP</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">br</span><span class="o">=</span><span class="n">_br</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="n">_dr</span><span class="p">))</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">_id</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;OTP&quot;</span><span class="p">},</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+            <span class="n">otp_ids</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">_id</span>
+
+    <span class="n">fi</span> <span class="o">=</span> <span class="n">StepInputProcessor</span><span class="p">(</span>
+        <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;conc&quot;</span><span class="p">,</span>
+        <span class="n">uids</span><span class="o">=</span><span class="n">otp_ids</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+        <span class="n">val</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="n">OutputRecorder</span><span class="p">([(</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)])</span>
+
+    <span class="n">lpu</span> <span class="o">=</span> <span class="n">LPU</span><span class="p">(</span>
+        <span class="n">dt</span><span class="p">,</span>
+        <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;OTP Currents&quot;</span><span class="p">,</span>
+        <span class="n">input_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fi</span><span class="p">],</span>
+        <span class="n">output_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fo</span><span class="p">],</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">manager</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extra_comps</span><span class="o">=</span><span class="p">[</span><span class="n">OTP</span><span class="o">.</span><span class="n">_ndcomp</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">lpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+    <span class="n">_ss</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">t</span> <span class="o">&gt;=</span> <span class="n">steady_state_compute_time</span> <span class="o">-</span> <span class="n">dt</span><span class="p">,</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">steady_state_compute_time</span> <span class="o">+</span> <span class="n">dt</span>
+        <span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">_peak</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">I_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)))</span>
+    <span class="n">I_peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)))</span>
+    <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;uids&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;OTP-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">uids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
+            <span class="n">I_ss</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ss</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">I_peak</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">_peak</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">olfdata</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+            <span class="s2">&quot;OTP&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataOTP</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="s2">&quot;OTP&quot;</span><span class="p">,</span> <span class="n">Amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">Br</span><span class="o">=</span><span class="n">br_s</span><span class="p">,</span> <span class="n">Dr</span><span class="o">=</span><span class="n">dr_s</span><span class="p">,</span> <span class="n">Peak</span><span class="o">=</span><span class="n">I_peak</span><span class="p">,</span> <span class="n">SS</span><span class="o">=</span><span class="n">I_ss</span>
+            <span class="p">),</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataMetadata</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="n">dur</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">br_s</span><span class="p">,</span> <span class="n">dr_s</span><span class="p">,</span> <span class="n">I_ss</span><span class="p">,</span> <span class="n">I_peak</span></div>
+
+
+<div class="viewcode-block" id="compute_resting"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.compute_resting">[docs]</a><span class="k">def</span> <span class="nf">compute_resting</span><span class="p">(</span>
+    <span class="n">NeuronModel</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">param_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">param_values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">neuron_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">input_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span>
+    <span class="n">spike_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;spike_state&quot;</span><span class="p">,</span>
+    <span class="n">dur</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">smoothen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">savgol_window</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">savgol_order</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute Resting Spike Rate of a Neuron as Parameter varies</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        NeuronModel: Model to be used to compute Resting Spike Rate</span>
+<span class="sd">        param_key: Parameter of the model to sweep</span>
+<span class="sd">        param_values: values of the parameter to sweep</span>
+<span class="sd">        neuron_params: other parameters to fix</span>
+<span class="sd">        repeat: number of times the same parameter value is repeated on neuron models</span>
+<span class="sd">            This is for noise reduction purposes</span>
+<span class="sd">        input_var: variable name of the input variable for the neuron model</span>
+<span class="sd">        spike_var: variable name of the spike variable for the neuron model</span>
+<span class="sd">        dur: duration of simulation</span>
+<span class="sd">        dt: time resolution of the simulation</span>
+<span class="sd">        save: whether to save the output</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        if `save==True`, `olftrans.data.data.olfdata.save` is called.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        param_values: 1d array of param_values</span>
+<span class="sd">        spike_rates: 1d array Spiking Frequencies, dimension matches param_values</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Basic Usage:</span>
+<span class="sd">        &gt;&gt;&gt; from olftrans.neurodriver.model import NoisyConnorStevens</span>
+<span class="sd">        &gt;&gt;&gt; sigmas = np.linspace(0., 0.005, 100)</span>
+<span class="sd">        &gt;&gt;&gt; _, fs = compute_resting(NoisyConnorStevens, &#39;sigma&#39;, sigmas, repeat=50)</span>
+
+<span class="sd">        We can look for the parameter value from resting spike rate</span>
+<span class="sd">        &gt;&gt;&gt; target_resting = 8.  # [Hz]</span>
+<span class="sd">        &gt;&gt;&gt; target_sigma = np.interp(x=target_resting, xp=fs, fp=sigmas)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.LPU</span> <span class="kn">import</span> <span class="n">LPU</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.StepInputProcessor</span> <span class="kn">import</span> <span class="n">StepInputProcessor</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.OutputProcessors.OutputRecorder</span> <span class="kn">import</span> <span class="n">OutputRecorder</span>
+
+    <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">dur</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">clsname</span> <span class="o">=</span> <span class="n">NeuronModel</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="n">param_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">param_values</span><span class="p">)</span>
+    <span class="n">neuron_params</span> <span class="o">=</span> <span class="n">neuron_params</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
+    <span class="n">csn_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">param_values</span><span class="p">),</span> <span class="n">repeat</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_p</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_values</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">NeuronModel</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">neuron_params</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">param_key</span><span class="p">:</span> <span class="n">val</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2">-P</span><span class="si">{</span><span class="n">n_p</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">_id</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">clsname</span><span class="p">},</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">csn_ids</span><span class="p">[</span><span class="n">n_p</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">_id</span>
+
+    <span class="n">fi</span> <span class="o">=</span> <span class="n">StepInputProcessor</span><span class="p">(</span>
+        <span class="n">variable</span><span class="o">=</span><span class="n">input_var</span><span class="p">,</span>
+        <span class="n">uids</span><span class="o">=</span><span class="n">csn_ids</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+        <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="n">OutputRecorder</span><span class="p">([(</span><span class="n">spike_var</span><span class="p">,</span> <span class="kc">None</span><span class="p">)])</span>
+
+    <span class="n">lpu</span> <span class="o">=</span> <span class="n">LPU</span><span class="p">(</span>
+        <span class="n">dt</span><span class="p">,</span>
+        <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Resting Spike Rate </span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2"> - Against </span><span class="si">{</span><span class="n">param_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">input_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fi</span><span class="p">],</span>
+        <span class="n">output_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fo</span><span class="p">],</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">manager</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extra_comps</span><span class="o">=</span><span class="p">[</span><span class="n">NeuronModel</span><span class="o">.</span><span class="n">_ndcomp</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">lpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+    <span class="n">Nspikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">param_values</span><span class="p">),</span> <span class="n">repeat</span><span class="p">))</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">get_output</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="s2">&quot;spike_state&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_p</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_values</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">clsname</span><span class="si">}</span><span class="s2">-P</span><span class="si">{</span><span class="n">n_p</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">Nspikes</span><span class="p">[</span><span class="n">n_p</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+                    <span class="n">spikes</span><span class="p">[</span><span class="n">_id</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">,</span> <span class="n">spikes</span><span class="p">[</span><span class="n">_id</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">stop</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+    <span class="n">spike_rates</span> <span class="o">=</span> <span class="n">Nspikes</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">smoothen</span><span class="p">:</span>
+        <span class="n">spike_rates</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">spike_rates</span><span class="p">,</span> <span class="n">savgol_window</span><span class="p">,</span> <span class="n">savgol_order</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">olfdata</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+            <span class="s2">&quot;REST&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataRest</span><span class="p">(</span>
+                <span class="n">Model</span><span class="o">=</span><span class="n">clsname</span><span class="p">,</span>
+                <span class="n">ParamKey</span><span class="o">=</span><span class="n">param_key</span><span class="p">,</span>
+                <span class="n">ParamValue</span><span class="o">=</span><span class="n">param_values</span><span class="p">,</span>
+                <span class="n">Smoothen</span><span class="o">=</span><span class="n">smoothen</span><span class="p">,</span>
+                <span class="n">Frequencies</span><span class="o">=</span><span class="n">spike_rates</span><span class="p">,</span>
+                <span class="n">InputVar</span><span class="o">=</span><span class="n">input_var</span><span class="p">,</span>
+                <span class="n">SpikeVar</span><span class="o">=</span><span class="n">spike_var</span><span class="p">,</span>
+                <span class="n">Params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">val</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;sigma&quot;</span> <span class="k">else</span> <span class="n">val</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">neuron_params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="n">Repeats</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataMetadata</span><span class="p">(</span>
+                <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span>
+                <span class="n">dur</span><span class="o">=</span><span class="n">dur</span><span class="p">,</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+                <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+                <span class="n">savgol_window</span><span class="o">=</span><span class="n">savgol_window</span><span class="p">,</span>
+                <span class="n">savgol_order</span><span class="o">=</span><span class="n">savgol_order</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">param_values</span><span class="p">,</span> <span class="n">spike_rates</span></div>
+
+
+<div class="viewcode-block" id="compute_peak_ss_spike_rate"><a class="viewcode-back" href="../../../olftrans.neurodriver.html#olftrans.neurodriver.model.compute_peak_ss_spike_rate">[docs]</a><span class="k">def</span> <span class="nf">compute_peak_ss_spike_rate</span><span class="p">(</span>
+    <span class="n">br_s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">dr_s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">dur</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="n">neuron_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute Peak and Steady-State Spike Rate output of OTP-BSG Cascade</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        if `save==True`, `olftrans.data.data.olfdata.save` is called.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        br_s: 1d array of binding rate</span>
+<span class="sd">        dr_s: 1d array of dissociation rate</span>
+<span class="sd">        spikerate_ss: 2d array of resultant steady-state currents</span>
+<span class="sd">        spikerate_peak: 2d array of resultant peak currents</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.LPU</span> <span class="kn">import</span> <span class="n">LPU</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.InputProcessors.StepInputProcessor</span> <span class="kn">import</span> <span class="n">StepInputProcessor</span>
+    <span class="kn">from</span> <span class="nn">neurokernel.LPU.OutputProcessors.OutputRecorder</span> <span class="kn">import</span> <span class="n">OutputRecorder</span>
+
+    <span class="n">neuron_params</span> <span class="o">=</span> <span class="n">neuron_params</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">dur</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
+    <span class="n">otp_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">bsg_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">),</span> <span class="n">repeat</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+            <span class="n">otp_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;OTP-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">OTP</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">br</span><span class="o">=</span><span class="n">_br</span><span class="p">,</span> <span class="n">dr</span><span class="o">=</span><span class="n">_dr</span><span class="p">))</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">otp_id</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">otp_id</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;OTP&quot;</span><span class="p">},</span> <span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+            <span class="n">otp_ids</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">otp_id</span>
+            <span class="k">for</span> <span class="n">n_r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+                <span class="n">bsg_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;BSG-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">-R</span><span class="si">{</span><span class="n">n_r</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">_params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">NoisyConnorStevens</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+                <span class="n">_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">neuron_params</span><span class="p">)</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span>
+                    <span class="n">bsg_id</span><span class="p">,</span>
+                    <span class="o">**</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">bsg_id</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;NoisyConnorStevens&quot;</span><span class="p">},</span>
+                    <span class="o">**</span><span class="n">_params</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">bsg_ids</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">n_r</span><span class="p">]</span> <span class="o">=</span> <span class="n">bsg_id</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">otp_id</span><span class="p">,</span> <span class="n">bsg_id</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">)</span>
+
+    <span class="n">fi</span> <span class="o">=</span> <span class="n">StepInputProcessor</span><span class="p">(</span>
+        <span class="n">variable</span><span class="o">=</span><span class="s2">&quot;conc&quot;</span><span class="p">,</span>
+        <span class="n">uids</span><span class="o">=</span><span class="n">otp_ids</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+        <span class="n">val</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="n">OutputRecorder</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;spike_state&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)],</span> <span class="n">sample_interval</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e-3</span> <span class="o">//</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">lpu</span> <span class="o">=</span> <span class="n">LPU</span><span class="p">(</span>
+        <span class="n">dt</span><span class="p">,</span>
+        <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;OTP-BSG Peak vs. SS&quot;</span><span class="p">,</span>
+        <span class="n">input_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fi</span><span class="p">],</span>
+        <span class="n">output_processors</span><span class="o">=</span><span class="p">[</span><span class="n">fo</span><span class="p">],</span>
+        <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">manager</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extra_comps</span><span class="o">=</span><span class="p">[</span><span class="n">OTP</span><span class="o">.</span><span class="n">_ndcomp</span><span class="p">,</span> <span class="n">NoisyConnorStevens</span><span class="o">.</span><span class="n">_ndcomp</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">lpu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing Peak and Steady State Currents&quot;</span><span class="p">)</span>
+    <span class="n">_ss</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">_peak</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">I_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)))</span>
+    <span class="n">I_peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)))</span>
+    <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">][</span><span class="s2">&quot;uids&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+            <span class="n">_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;OTP-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">uids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
+            <span class="n">I_ss</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ss</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">I_peak</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">_peak</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing Peak and Steady State Spike Rates&quot;</span><span class="p">)</span>
+    <span class="n">psths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+    <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Computing PSTH...&quot;</span><span class="p">)</span>
+    <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;spike_state&quot;</span><span class="p">][</span><span class="s2">&quot;uids&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dr_s</span><span class="p">):</span>
+            <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">spike_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">repeat</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">n_r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+                <span class="n">bsg_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;BSG-B</span><span class="si">{</span><span class="n">n_b</span><span class="si">}</span><span class="s2">-D</span><span class="si">{</span><span class="n">n_d</span><span class="si">}</span><span class="s2">-R</span><span class="si">{</span><span class="n">n_r</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="n">uids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">bsg_id</span><span class="p">)</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;spike_state&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">idx</span>
+                <span class="n">_spikes</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;spike_state&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;time&quot;</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>
+                <span class="n">spike_states</span><span class="p">[((</span><span class="n">_spikes</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">n_r</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">psth</span><span class="p">,</span> <span class="n">psth_t</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">compute_psth</span><span class="p">(</span><span class="n">spike_states</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">,</span> <span class="mf">1.5e-2</span><span class="p">)</span>
+            <span class="n">psths</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">psth</span>
+    <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">psths_cascade</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">br_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dr_s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">psth_t</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">n_b</span><span class="p">,</span> <span class="n">_br</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br_s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">n_d</span><span class="p">,</span> <span class="n">_dr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dr_s</span><span class="p">):</span>
+            <span class="n">psths_cascade</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">psths</span><span class="p">[</span><span class="n">n_b</span><span class="p">,</span> <span class="n">n_d</span><span class="p">]</span>
+
+    <span class="n">fs_ss</span> <span class="o">=</span> <span class="n">psths_cascade</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">psth_t</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">psth_t</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fs_peak</span> <span class="o">=</span> <span class="n">psths_cascade</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">br_s</span><span class="p">,</span> <span class="n">dr_s</span><span class="p">,</span> <span class="n">I_ss</span><span class="p">,</span> <span class="n">I_peak</span><span class="p">,</span> <span class="n">fs_ss</span><span class="p">,</span> <span class="n">fs_peak</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

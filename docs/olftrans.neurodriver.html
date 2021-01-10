@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.neurodriver package &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="olftrans.neurodriver.NDComponents package" href="olftrans.neurodriver.NDComponents.html" />
+    <link rel="prev" title="olftrans.data package" href="olftrans.data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">olftrans</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="olftrans.html">olftrans package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="olftrans.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="olftrans.cpu.html">olftrans.cpu package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.data.html">olftrans.data package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">olftrans.neurodriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.fbl">olftrans.fbl module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.olftrans">olftrans.olftrans module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.plot">olftrans.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.utils">olftrans.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">olftrans</a> &raquo;</li>
+        
+          <li><a href="olftrans.html">olftrans package</a> &raquo;</li>
+        
+      <li>olftrans.neurodriver package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/olftrans.neurodriver.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="olftrans-neurodriver-package">
+<h1>olftrans.neurodriver package<a class="headerlink" href="#olftrans-neurodriver-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html">olftrans.neurodriver.NDComponents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents.NoisyConnorStevens">olftrans.neurodriver.NDComponents.NoisyConnorStevens module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents.OTP">olftrans.neurodriver.NDComponents.OTP module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-olftrans.neurodriver.model">
+<span id="olftrans-neurodriver-model-module"></span><h2>olftrans.neurodriver.model module<a class="headerlink" href="#module-olftrans.neurodriver.model" title="Permalink to this headline">¶</a></h2>
+<p>NeuroDriver Models and Utilities</p>
+<p class="rubric">Examples</p>
+<p>1. Compute F-I
+&gt;&gt;&gt; from olftrans.neurodriver import model
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; dt = 5e-6
+&gt;&gt;&gt; repeat = 50
+&gt;&gt;&gt; Is = np.linspace(0,150,150)
+&gt;&gt;&gt; _, fs = model.compute_fi(model.NoisyConnorStevens, Is, dt=dt, repeat=repeat, save=True)</p>
+<p>2. Compute Resting Spike Rate
+&gt;&gt;&gt; from olftrans.neurodriver import model
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; dt = 5e-6
+&gt;&gt;&gt; repeat = 50
+&gt;&gt;&gt; sigmas = np.linspace(0,0.005,150)
+&gt;&gt;&gt; _, rest_fs = model.compute_resting(model.NoisyConnorStevens, ‘sigma’, sigmas/np.sqrt(dt), dt=dt, repeat=repeat, save=True)</p>
+<p>3. Compute Peak and SS Currents of OTP
+&gt;&gt;&gt; from olftrans.neurodriver import model
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; dt, amplitude = 5e-6, 100.
+&gt;&gt;&gt; br_s = np.linspace(1e-2, 1000., 50)
+&gt;&gt;&gt; dr_s = np.linspace(1e-2, 1000., 50)
+&gt;&gt;&gt; _, _, I_ss, I_peak = model.compute_peak_ss_I(br_s, dr_s, dt=dt, amplitude=amplitude, save=True)</p>
+<dl class="py class">
+<dt id="olftrans.neurodriver.model.Model">
+<em class="property">class </em><code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">Model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#Model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neuroballad.models.element.Element</span></code></p>
+<p>NeuroBallad Element that also wraps the underlying NDComponent</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.neurodriver.model.NoisyConnorStevens">
+<em class="property">class </em><code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">NoisyConnorStevens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#NoisyConnorStevens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.NoisyConnorStevens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#olftrans.neurodriver.model.Model" title="olftrans.neurodriver.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">olftrans.neurodriver.model.Model</span></code></a></p>
+<p>Noisy Connor-Stevens Neuron Model</p>
+<p>F-I curve is controlled by <cite>sigma</cite> parameter</p>
+<p class="rubric">Notes</p>
+<p><cite>sigma</cite> value should be scaled by <cite>sqrt(dt)</cite> as <cite>sigma/sqrt(dt)</cite>
+where <cite>sigma</cite> is the standard deviation of the Brownian Motion</p>
+<dl class="py attribute">
+<dt id="olftrans.neurodriver.model.NoisyConnorStevens.params">
+<code class="sig-name descname">params</code><em class="property"> = {'EK': -72.0, 'EL': -17.0, 'ENa': 55.0, 'Ea': -75.0, 'gK': 20.0, 'gL': 0.3, 'gNa': 120.0, 'ga': 47.7, 'hs': -12.0, 'ms': -5.3, 'ns': -4.3, 'refperiod': 1.0, 'sigma': 2.05}</em><a class="headerlink" href="#olftrans.neurodriver.model.NoisyConnorStevens.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.neurodriver.model.NoisyConnorStevens.states">
+<code class="sig-name descname">states</code><em class="property"> = {'a': 1.0, 'b': 1.0, 'h': 1.0, 'm': 0.0, 'n': 0.0, 'refactory': 0.0, 'v1': -60.0, 'v2': -60.0}</em><a class="headerlink" href="#olftrans.neurodriver.model.NoisyConnorStevens.states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.neurodriver.model.OTP">
+<em class="property">class </em><code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">OTP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#OTP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.OTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#olftrans.neurodriver.model.Model" title="olftrans.neurodriver.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">olftrans.neurodriver.model.Model</span></code></a></p>
+<p>Odorant Transduction Process</p>
+<dl class="py attribute">
+<dt id="olftrans.neurodriver.model.OTP.element_class">
+<code class="sig-name descname">element_class</code><em class="property"> = 'neuron'</em><a class="headerlink" href="#olftrans.neurodriver.model.OTP.element_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.neurodriver.model.OTP.params">
+<code class="sig-name descname">params</code><em class="property"> = {'Imax': 62.13, 'a1': 45.0, 'a2': 146.1, 'a3': 2.539, 'b1': 0.8, 'b2': 117.2, 'b3': 0.9096, 'br': 1.0, 'c': 0.06546, 'dr': 10.0, 'gamma': 0.215, 'kappa': 8841.0, 'p': 1.0}</em><a class="headerlink" href="#olftrans.neurodriver.model.OTP.params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.neurodriver.model.OTP.states">
+<code class="sig-name descname">states</code><em class="property"> = {'duh': 0.0, 'uh': 0.0, 'v': 0.0, 'x1': 0.0, 'x2': 0.0, 'x3': 0.0}</em><a class="headerlink" href="#olftrans.neurodriver.model.OTP.states" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.neurodriver.model.compute_fi">
+<code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">compute_fi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NeuronModel</span></em>, <em class="sig-param"><span class="n">Is</span></em>, <em class="sig-param"><span class="n">repeat</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">input_var</span><span class="o">=</span><span class="default_value">'I'</span></em>, <em class="sig-param"><span class="n">spike_var</span><span class="o">=</span><span class="default_value">'spike_state'</span></em>, <em class="sig-param"><span class="n">dur</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1e-05</span></em>, <em class="sig-param"><span class="n">neuron_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#compute_fi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.compute_fi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Frequency-Current relationship of Neuron</p>
+<p class="rubric">Notes</p>
+<p>If <cite>save==True</cite>, <cite>olftrans.data.data.olfdata.save</cite> is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>1d array of Currents
+spike_rates: 1d array Spiking Frequencies, dimension matches param_values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Is</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NeuronModel</strong> (<a class="reference internal" href="#olftrans.neurodriver.model.Model" title="olftrans.neurodriver.model.Model"><em>olftrans.neurodriver.model.Model</em></a>) – </p></li>
+<li><p><strong>Is</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>repeat</strong> (<em>int</em>) – </p></li>
+<li><p><strong>input_var</strong> (<em>str</em>) – </p></li>
+<li><p><strong>spike_var</strong> (<em>str</em>) – </p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – </p></li>
+<li><p><strong>start</strong> (<em>float</em>) – </p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>neuron_params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Basic Usage:
+&gt;&gt;&gt; from olftrans.neurodriver.model import NoisyConnorStevens
+&gt;&gt;&gt; Is = np.linspace(0., 150, 100)
+&gt;&gt;&gt; dt = 1e-5
+&gt;&gt;&gt; _, fs = compute_fi(NoisyConnorStevens, Is, repeat=50, dt=dt, neuron_params={‘sigma’: 0.005/np.sqrt(dt)})</p>
+<p>We can look for the input current value from spike rate
+&gt;&gt;&gt; target_spike_rate = 150.  # [Hz]
+&gt;&gt;&gt; target_I = np.interp(x=target_spike_rate, xp=fs, fp=fs)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.neurodriver.model.compute_peak_ss_I">
+<code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">compute_peak_ss_I</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">br_s</span></em>, <em class="sig-param"><span class="n">dr_s</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1e-05</span></em>, <em class="sig-param"><span class="n">dur</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">amplitude</span><span class="o">=</span><span class="default_value">100.0</span></em>, <em class="sig-param"><span class="n">steady_state_compute_time</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#compute_peak_ss_I"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.compute_peak_ss_I" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Peak and Steady-State Current output of OTP Model</p>
+<p class="rubric">Notes</p>
+<p>if <cite>save==True</cite>, <cite>olftrans.data.data.olfdata.save</cite> is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>1d array of binding rate
+dr_s: 1d array of dissociation rate
+I_ss: 2d array of resultant steady-state currents
+I_peak: 2d array of resultant peak currents</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>br_s</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>br_s</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>dr_s</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – </p></li>
+<li><p><strong>start</strong> (<em>float</em>) – </p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>amplitude</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Basic Usage:
+&gt;&gt;&gt; br_s = np.linspace(1e-1, 100., 100)
+&gt;&gt;&gt; dr_s = np.linspace(1e-1, 100., 100)
+&gt;&gt;&gt; _, _, I_ss, I_peak = compute_peak_ss_I(br_s, dr_s, save=True)</p>
+<p>Plotting Steady-State Current against affinity:
+&gt;&gt;&gt; DR, BR = np.meshgrid(dr_s, br_s)
+&gt;&gt;&gt; plt.plot((BR/DR).ravel(), I_ss.ravel()) # steady-state current is only dependent on dissociation</p>
+<p>We can also look for the affinity value from steady-state Current output
+&gt;&gt;&gt; target_I = 50.  # [uA]
+&gt;&gt;&gt; target_aff = np.interp(x=target_I, xp=I_ss.ravel(), fp=(BR/DR).ravel())</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.neurodriver.model.compute_peak_ss_spike_rate">
+<code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">compute_peak_ss_spike_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">br_s</span></em>, <em class="sig-param"><span class="n">dr_s</span></em>, <em class="sig-param"><span class="n">repeat</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1e-05</span></em>, <em class="sig-param"><span class="n">dur</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">amplitude</span><span class="o">=</span><span class="default_value">100.0</span></em>, <em class="sig-param"><span class="n">neuron_params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#compute_peak_ss_spike_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.compute_peak_ss_spike_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Peak and Steady-State Spike Rate output of OTP-BSG Cascade</p>
+<p class="rubric">Notes</p>
+<p>if <cite>save==True</cite>, <cite>olftrans.data.data.olfdata.save</cite> is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>1d array of binding rate
+dr_s: 1d array of dissociation rate
+spikerate_ss: 2d array of resultant steady-state currents
+spikerate_peak: 2d array of resultant peak currents</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>br_s</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>br_s</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>dr_s</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>repeat</strong> (<em>int</em>) – </p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – </p></li>
+<li><p><strong>start</strong> (<em>float</em>) – </p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>amplitude</strong> (<em>float</em>) – </p></li>
+<li><p><strong>neuron_params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.neurodriver.model.compute_resting">
+<code class="sig-prename descclassname">olftrans.neurodriver.model.</code><code class="sig-name descname">compute_resting</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NeuronModel</span></em>, <em class="sig-param"><span class="n">param_key</span></em>, <em class="sig-param"><span class="n">param_values</span></em>, <em class="sig-param"><span class="n">neuron_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">repeat</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">input_var</span><span class="o">=</span><span class="default_value">'I'</span></em>, <em class="sig-param"><span class="n">spike_var</span><span class="o">=</span><span class="default_value">'spike_state'</span></em>, <em class="sig-param"><span class="n">dur</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">dt</span><span class="o">=</span><span class="default_value">1e-05</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">smoothen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">savgol_window</span><span class="o">=</span><span class="default_value">15</span></em>, <em class="sig-param"><span class="n">savgol_order</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/model.html#compute_resting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.model.compute_resting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute Resting Spike Rate of a Neuron as Parameter varies</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NeuronModel</strong> (<a class="reference internal" href="#olftrans.neurodriver.model.Model" title="olftrans.neurodriver.model.Model"><em>olftrans.neurodriver.model.Model</em></a>) – Model to be used to compute Resting Spike Rate</p></li>
+<li><p><strong>param_key</strong> (<em>str</em>) – Parameter of the model to sweep</p></li>
+<li><p><strong>param_values</strong> (<em>numpy.ndarray</em>) – values of the parameter to sweep</p></li>
+<li><p><strong>neuron_params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – other parameters to fix</p></li>
+<li><p><strong>repeat</strong> (<em>int</em>) – number of times the same parameter value is repeated on neuron models
+This is for noise reduction purposes</p></li>
+<li><p><strong>input_var</strong> (<em>str</em>) – variable name of the input variable for the neuron model</p></li>
+<li><p><strong>spike_var</strong> (<em>str</em>) – variable name of the spike variable for the neuron model</p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – duration of simulation</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – time resolution of the simulation</p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – whether to save the output</p></li>
+<li><p><strong>smoothen</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>savgol_window</strong> (<em>int</em>) – </p></li>
+<li><p><strong>savgol_order</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[numpy.ndarray, numpy.ndarray]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>if <cite>save==True</cite>, <cite>olftrans.data.data.olfdata.save</cite> is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>1d array of param_values
+spike_rates: 1d array Spiking Frequencies, dimension matches param_values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>param_values</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NeuronModel</strong> (<a class="reference internal" href="#olftrans.neurodriver.model.Model" title="olftrans.neurodriver.model.Model"><em>olftrans.neurodriver.model.Model</em></a>) – </p></li>
+<li><p><strong>param_key</strong> (<em>str</em>) – </p></li>
+<li><p><strong>param_values</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>neuron_params</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
+<li><p><strong>repeat</strong> (<em>int</em>) – </p></li>
+<li><p><strong>input_var</strong> (<em>str</em>) – </p></li>
+<li><p><strong>spike_var</strong> (<em>str</em>) – </p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – </p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>save</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>smoothen</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>savgol_window</strong> (<em>int</em>) – </p></li>
+<li><p><strong>savgol_order</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Basic Usage:
+&gt;&gt;&gt; from olftrans.neurodriver.model import NoisyConnorStevens
+&gt;&gt;&gt; sigmas = np.linspace(0., 0.005, 100)
+&gt;&gt;&gt; _, fs = compute_resting(NoisyConnorStevens, ‘sigma’, sigmas, repeat=50)</p>
+<p>We can look for the parameter value from resting spike rate
+&gt;&gt;&gt; target_resting = 8.  # [Hz]
+&gt;&gt;&gt; target_sigma = np.interp(x=target_resting, xp=fs, fp=sigmas)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.neurodriver">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-olftrans.neurodriver" title="Permalink to this headline">¶</a></h2>
+<p>NeuroDriver Compatible Models</p>
+<p>Main Entry point is the <cite>olftrans.neurodriver.model</cite> module.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="olftrans.neurodriver.NDComponents.html" class="btn btn-neutral float-right" title="olftrans.neurodriver.NDComponents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="olftrans.data.html" class="btn btn-neutral float-left" title="olftrans.data package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
