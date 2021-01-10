@@ -6,7 +6,7 @@ Olfactory Transduction Utilities for FlyBrainLab.
 
 
 * Free software: BSD license
-
+* Documentation: https://tk-21st.github.io/OlfTrans
 
 Features
 --------
