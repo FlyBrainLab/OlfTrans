@@ -153,11 +153,9 @@ def generate_spike_from_psth(
         num: number of trials to generate
 
     Returns:
-        A tuple of (time, spikes).
-        Spikes is a binary numpy array of either shape
-            1. (Nt, num) if num > 1
-            2. (Nt,) if num == 1
-        See Notes for definition of `Nt`
+        A tuple of shape (time, spikes), where spikes is a binary numpy array
+        of either shape :code:`(Nt, num)` if :code:`num > 1`, or :code:`(Nt,)`
+        if :code:`num == 1`. See Notes for definition of `Nt`.
 
     Notes:
         1. If `psth_t` is specified:
@@ -175,7 +173,6 @@ def generate_spike_from_psth(
         >>> psth, psth_t = utils.PSTH(spikes, d_t=dt, window=20e-3, shift=10e-3).compute()
         >>> tt, spikes = utils.generate_spike_from_psth(dt, psth, psth_t)
         >>> plot.plot_spikes(spikes, t=tt)
-
     """
     psth = np.asarray(psth)
     psth_t = np.asarray(psth_t)

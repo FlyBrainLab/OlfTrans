@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.plot &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">olftrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>olftrans.plot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for olftrans.plot</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Plotting functions&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="plot_multiple"><a class="viewcode-back" href="../../olftrans.html#olftrans.plot.plot_multiple">[docs]</a><span class="k">def</span> <span class="nf">plot_multiple</span><span class="p">(</span>
+    <span class="n">data_x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot multiple data curves against a same x-axis on mulitple subplots.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        datax (darray): the data point on the x-axis.</span>
+<span class="sd">        *args: each entry of args is a list containing multiple sets of data</span>
+<span class="sd">            and parameters that will be plotted in the same subplot.</span>
+<span class="sd">            An entry should follow the format `(data_1, param_1, ...)`,</span>
+<span class="sd">            where each of the `data_i` is a numpy array, and each of the</span>
+<span class="sd">            `param_i` is a `dict` of the parameters for ploting `data_i` against</span>
+<span class="sd">            `data_x`. Alternatively, an entry can simply be an numpy array. In</span>
+<span class="sd">            this case, only one curve will be plotted in the corresponding</span>
+<span class="sd">            subplot.</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        figw (float): the figure width.</span>
+<span class="sd">        figh (float): the figure height.</span>
+<span class="sd">        xlabel (str): the label of the x-axis.</span>
+
+<span class="sd">        The additional keyword arguments will propagate into the private</span>
+<span class="sd">        plotting method `_plot`, and eventually into the `pyplot.plot` method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_plot</span><span class="p">(</span><span class="n">axe</span><span class="p">,</span> <span class="n">data_x</span><span class="p">,</span> <span class="n">data_y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            axe (matplotlib.Axes.axe): the axe of the subplot.</span>
+<span class="sd">            data_x (darray): the data point along the x-axis.</span>
+<span class="sd">            data_y (darray): the data point along the y-axis.</span>
+
+<span class="sd">        Keyword Arguments:</span>
+<span class="sd">            xlim (tuple): a tuple-like with two entries of limits of the x-axis.</span>
+<span class="sd">            ylim (tuple): a tuple-like with two entries of limits of the y-axis.</span>
+<span class="sd">            spike (bool): specify if `data_y` is a spike sequence.</span>
+<span class="sd">            ylabel (str): the label of the y-axis.</span>
+<span class="sd">            ds_rate (int): the downsample rate of the data.</span>
+
+<span class="sd">            The additional keyword arguments will propagate into the</span>
+<span class="sd">            `pyplot.plot` method. For example, one could use `label` to add a</span>
+<span class="sd">            legend to a curve.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;xlim&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ylim&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">spike</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;spike&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">ylabel</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ylabel&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">ds_rate</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ds_rate&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">spike</span><span class="p">:</span>
+            <span class="n">ylim</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
+            <span class="n">ylabel</span> <span class="o">=</span> <span class="n">ylabel</span> <span class="ow">or</span> <span class="s2">&quot;Spike Train&quot;</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s2">&quot; &quot;</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">ds_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_x</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[::</span><span class="n">ds_rate</span><span class="p">]</span>
+            <span class="n">data_y</span> <span class="o">=</span> <span class="n">data_y</span><span class="p">[::</span><span class="n">ds_rate</span><span class="p">]</span>
+
+        <span class="n">axe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> <span class="n">data_y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">xlim</span><span class="p">:</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ylim</span><span class="p">:</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ylabel</span><span class="p">:</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+
+    <span class="n">figw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;figw&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">figh</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;figh&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">xlabel</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;xlabel&quot;</span><span class="p">,</span> <span class="s2">&quot;Time, [s]&quot;</span><span class="p">)</span>
+
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">figw</span><span class="p">,</span> <span class="n">num</span> <span class="o">*</span> <span class="n">figh</span><span class="p">))</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">axe</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">axes</span><span class="p">)):</span>
+        <span class="n">axe</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">param_list</span> <span class="o">=</span> <span class="p">[{}]</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">param_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">has_legend</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">data_y</span><span class="p">,</span> <span class="n">subkwargs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_list</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">subkwargs</span><span class="p">:</span>
+                    <span class="n">subkwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="n">has_legend</span> <span class="o">=</span> <span class="n">has_legend</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;label&quot;</span> <span class="ow">in</span> <span class="n">subkwargs</span><span class="p">)</span>
+            <span class="n">_plot</span><span class="p">(</span><span class="n">axe</span><span class="p">,</span> <span class="n">data_x</span><span class="p">,</span> <span class="n">data_y</span><span class="p">,</span> <span class="o">**</span><span class="n">subkwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">has_legend</span><span class="p">:</span>
+            <span class="n">axe</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span></div>
+
+
+<div class="viewcode-block" id="plot_spikes"><a class="viewcode-back" href="../../olftrans.html#olftrans.plot.plot_spikes">[docs]</a><span class="k">def</span> <span class="nf">plot_spikes</span><span class="p">(</span>
+    <span class="n">spikes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot Spikes in raster format</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        spikes: the spike states in binary format, where 1 stands for a spike.</span>
+<span class="sd">            The shape of the spikes should either be (N_times, ) or (N_trials, N_times)</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        t: time axes for the spikes, use arange if not provided</span>
+<span class="sd">        ax: which axis to plot into, create one if not provided</span>
+<span class="sd">        markersize: size of raster</span>
+<span class="sd">        color: color for the raster. Any acceptable type of `matplotlib.pyplot.plot`&#39;s</span>
+<span class="sd">            color argument is accepted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ax: the axis that the raster is plotted into</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">spikes</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;matrix need to be of ndim 2, (channels x time), got ndim=</span><span class="si">{</span><span class="n">spikes</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="n">neu_idx</span><span class="p">,</span> <span class="n">t_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">t_idx</span><span class="p">],</span> <span class="n">neu_idx</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">markersize</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Raster plot failed, likely an issue with color or markersize setting&quot;</span>
+        <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Raster plot failed, likely an issue with spikes and time vector mismatch&quot;</span>
+        <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Raster plot failed due to unknown error&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">t</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="plot_mat"><a class="viewcode-back" href="../../olftrans.html#olftrans.plot.plot_mat">[docs]</a><span class="k">def</span> <span class="nf">plot_mat</span><span class="p">(</span>
+    <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cbar_kw</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Plot Matrix with formatted time axes</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        mat: the matrix to be plotted, it should of shape (N, Time)</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        t: time axes for the spikes, use arange if not provided</span>
+<span class="sd">        ax: which axis to plot into, create one if not provided</span>
+<span class="sd">        cax: which axis to plot colorbar into</span>
+<span class="sd">            - if instance of axis, plot into that axis</span>
+<span class="sd">            - if is True, steal axis from `ax`</span>
+<span class="sd">        vmin: minimum value for the imshow</span>
+<span class="sd">        vmax: maximum value for the imshow</span>
+<span class="sd">        cbar_kw: keyword arguments to be passed into the colorbar creation</span>
+<span class="sd">        cmap: colormap to use</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ax: the axis that the raster is plotted into</span>
+<span class="sd">        cbar: colorbar object, only returned if cax is `True` or a `plt.Axes` instance</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; dt, dur, start, stop = 1e-4, 2, 0.5, 1.0</span>
+<span class="sd">        &gt;&gt;&gt; t = np.arange(0, dur, dt)</span>
+<span class="sd">        &gt;&gt;&gt; amps = np.arange(0, 100, 10)</span>
+<span class="sd">        &gt;&gt;&gt; wav = utils.generate_stimulus(&#39;step&#39;, dt, dur, (start, stop), amps)</span>
+<span class="sd">        &gt;&gt;&gt; ax,cbar = plot_mat(wav, t=t, cax=True, vmin=10, vmax=100, cbar_kw={&#39;label&#39;:&#39;test&#39;}, cmap=plt.cm.gnuplot)</span>
+<span class="sd">        &gt;&gt;&gt; ax, = plot_mat(wav, t=t, cax=False, vmin=10, vmax=100, cbar_kw={&#39;label&#39;:&#39;test&#39;}, cmap=plt.cm.gnuplot)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mat</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;matrix need to be of ndim 1 (N_time),or ndim 2 (N_trials x N_times), got ndim=</span><span class="si">{</span><span class="n">mat</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@ticker</span><span class="o">.</span><span class="n">FuncFormatter</span>
+    <span class="k">def</span> <span class="nf">major_formatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+
+    <span class="n">cim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">mat</span><span class="p">,</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">major_formatter</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cax</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cbar_kw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cbar_kw</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cax</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
+            <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cim</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">cbar_kw</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cim</span><span class="p">,</span> <span class="n">cax</span><span class="p">,</span> <span class="o">**</span><span class="n">cbar_kw</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cbar</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">ax</span><span class="p">,)</span></div>
+
+
+<div class="viewcode-block" id="yyaxis"><a class="viewcode-back" href="../../olftrans.html#olftrans.plot.yyaxis">[docs]</a><span class="k">def</span> <span class="nf">yyaxis</span><span class="p">(</span><span class="n">ax</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="s2">&quot;color&quot;</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Create A second axis with colored spine/ticks/label</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        ax: ax to create another y-axis from</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        c: Color</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ax2: axis that shares x with `ax`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax2</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

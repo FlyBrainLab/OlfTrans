@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.data.data &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">olftrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>olftrans.data.data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for olftrans.data.data</h1><div class="highlight"><pre>
+<span></span><span class="c1"># pylint:disable=no-member</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">DATADIR</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span>
+
+
+<div class="viewcode-block" id="DataMetadata"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.DataMetadata">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataMetadata</span><span class="p">:</span>
+    <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">dur</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">stop</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">savgol_window</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">savgol_order</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="DataRest"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.DataRest">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataRest</span><span class="p">:</span>
+    <span class="n">Model</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">ParamKey</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">ParamValue</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">Smoothen</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">Frequencies</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">InputVar</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">SpikeVar</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Params</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">Repeats</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+<div class="viewcode-block" id="DataFI"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.DataFI">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataFI</span><span class="p">:</span>
+    <span class="n">Model</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Currents</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">Frequencies</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">InputVar</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">SpikeVar</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Params</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">Repeats</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+<div class="viewcode-block" id="DataOTP"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.DataOTP">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataOTP</span><span class="p">:</span>
+    <span class="n">Model</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Amplitude</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">Br</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">Dr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">Peak</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">SS</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></div>
+
+
+<span class="k">def</span> <span class="nf">_rm_rf</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Remove Folder&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">islink</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Data"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.Data">[docs]</a><span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATADIR</span><span class="p">,</span> <span class="s2">&quot;npz_cache&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fnames</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">REST</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;records_rest.json&quot;</span><span class="p">),</span>
+            <span class="n">FI</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;records_fi.json&quot;</span><span class="p">),</span>
+            <span class="n">OTP</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;records_otp.json&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">REST</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">FI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">OTP</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Data.setup"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.Data.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">clean</span><span class="p">:</span>
+            <span class="n">confirm</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+            <span class="k">while</span> <span class="n">confirm</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]:</span>
+                <span class="n">confirm</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;WARNING: setup(clean) with remove everything in cache folder, proceed? [n]&quot;</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">confirm</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                    <span class="c1"># assume as n</span>
+                    <span class="k">break</span>
+                <span class="k">elif</span> <span class="n">confirm</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">]:</span>
+                    <span class="n">_rm_rf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">)</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">confirm</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]:</span>
+                    <span class="k">break</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">DClass</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;REST&quot;</span><span class="p">,</span> <span class="s2">&quot;FI&quot;</span><span class="p">,</span> <span class="s2">&quot;OTP&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DataRest</span><span class="p">,</span> <span class="n">DataFI</span><span class="p">,</span> <span class="n">DataOTP</span><span class="p">]):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">df</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
+                <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="s2">&quot;FileName&quot;</span><span class="p">]</span>
+                    <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">DClass</span><span class="o">.</span><span class="n">__dataclass_fields__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                    <span class="o">+</span> <span class="p">[</span>
+                        <span class="sa">f</span><span class="s2">&quot;metadata.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">DataMetadata</span><span class="o">.</span><span class="n">__dataclass_fields__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+
+            <span class="c1"># convert list and tuple to numpy array</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span> <span class="k">else</span> <span class="n">x</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="Data.save"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.Data.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="s2">&quot;otp&quot;</span><span class="p">,</span> <span class="s2">&quot;rest&quot;</span><span class="p">,</span> <span class="s2">&quot;fi&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FI&quot;</span><span class="p">,</span> <span class="s2">&quot;REST&quot;</span><span class="p">,</span> <span class="s2">&quot;OTP&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;data_type </span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s2"> not understood, must be OTP/REST/FI&quot;</span>
+            <span class="p">)</span>
+        <span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">fname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_saveable</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">-%H%M%S&quot;</span><span class="p">)</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">time_saveable</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">DataFI</span><span class="p">,</span> <span class="n">DataOTP</span><span class="p">,</span> <span class="n">DataRest</span><span class="p">)):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">asdict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="n">time_stamp</span><span class="p">,</span> <span class="s2">&quot;FileName&quot;</span><span class="p">:</span> <span class="n">fname</span><span class="p">})</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">DataMetadata</span><span class="p">):</span>
+            <span class="n">metadata</span> <span class="o">=</span> <span class="n">asdict</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;metadata.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">val</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fnames</span><span class="p">[</span><span class="n">data_type</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savez_compressed</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CACHEDIR</span><span class="p">,</span> <span class="n">fname</span><span class="p">),</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Data.find"><a class="viewcode-back" href="../../../olftrans.data.html#olftrans.data.data.Data.find">[docs]</a>    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data_type</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="s2">&quot;otp&quot;</span><span class="p">,</span> <span class="s2">&quot;rest&quot;</span><span class="p">,</span> <span class="s2">&quot;fi&quot;</span><span class="p">],</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">loc_args</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;FI&quot;</span><span class="p">,</span> <span class="s2">&quot;REST&quot;</span><span class="p">,</span> <span class="s2">&quot;OTP&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;data_type </span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s2"> not understood, must be OTP/REST/FI&quot;</span>
+            <span class="p">)</span>
+        <span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">loc_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loc_args</span><span class="p">(</span><span class="n">df</span><span class="p">)][</span><span class="n">key</span><span class="p">]</span></div></div>
+
+
+<span class="n">olfdata</span> <span class="o">=</span> <span class="n">Data</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.cpu package &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="olftrans.data package" href="olftrans.data.html" />
+    <link rel="prev" title="olftrans package" href="olftrans.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">olftrans</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="olftrans.html">olftrans package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="olftrans.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">olftrans.cpu package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.data.html">olftrans.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.html">olftrans.neurodriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.errors">olftrans.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.fbl">olftrans.fbl module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.olftrans">olftrans.olftrans module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.plot">olftrans.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.utils">olftrans.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">olftrans</a> &raquo;</li>
+        
+          <li><a href="olftrans.html">olftrans package</a> &raquo;</li>
+        
+      <li>olftrans.cpu package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/olftrans.cpu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="olftrans-cpu-package">
+<h1>olftrans.cpu package<a class="headerlink" href="#olftrans-cpu-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-olftrans.cpu.model">
+<span id="olftrans-cpu-model-module"></span><h2>olftrans.cpu.model module<a class="headerlink" href="#module-olftrans.cpu.model" title="Permalink to this headline">¶</a></h2>
+<p>CPU Models</p>
+<dl class="py class">
+<dt id="olftrans.cpu.model.Model">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.cpu.model.</span></code><code class="sig-name descname"><span class="pre">Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">num=1</span></em>, <em class="sig-param"><span class="pre">floatType=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></em>, <em class="sig-param"><span class="pre">**states_or_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.Model.Params">
+<code class="sig-name descname"><span class="pre">Params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#olftrans.cpu.model.Model.Params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.Model.States">
+<code class="sig-name descname"><span class="pre">States</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#olftrans.cpu.model.Model.States" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.Model.Time_Scale">
+<code class="sig-name descname"><span class="pre">Time_Scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1.0</span></em><a class="headerlink" href="#olftrans.cpu.model.Model.Time_Scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.Model.gradient">
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">gradient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#Model.gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.Model.gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update function of the ODE dx/dt = f(x)</p>
+<p>Computes gradient of all states, returned as dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.Model.non_gradient">
+<code class="sig-name descname"><span class="pre">non_gradient</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#Model.non_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.Model.non_gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-gradient Update</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.Model.record">
+<code class="sig-name descname"><span class="pre">record</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">states</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#Model.record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.Model.record" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.Model.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#Model.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.Model.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.cpu.model.NoisyConnorStevens">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.cpu.model.</span></code><code class="sig-name descname"><span class="pre">NoisyConnorStevens</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">num=1</span></em>, <em class="sig-param"><span class="pre">floatType=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></em>, <em class="sig-param"><span class="pre">**states_or_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#NoisyConnorStevens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#olftrans.cpu.model.Model" title="olftrans.cpu.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">olftrans.cpu.model.Model</span></code></a></p>
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.NoisyConnorStevens.Params">
+<code class="sig-name descname"><span class="pre">Params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'EK':</span> <span class="pre">-72.0,</span> <span class="pre">'EL':</span> <span class="pre">-17.0,</span> <span class="pre">'ENa':</span> <span class="pre">55.0,</span> <span class="pre">'Ea':</span> <span class="pre">-75.0,</span> <span class="pre">'gK':</span> <span class="pre">20.0,</span> <span class="pre">'gL':</span> <span class="pre">0.3,</span> <span class="pre">'gNa':</span> <span class="pre">120.0,</span> <span class="pre">'ga':</span> <span class="pre">47.7,</span> <span class="pre">'hs':</span> <span class="pre">-12.0,</span> <span class="pre">'ms':</span> <span class="pre">-5.3,</span> <span class="pre">'ns':</span> <span class="pre">-4.3,</span> <span class="pre">'refperiod':</span> <span class="pre">1.0,</span> <span class="pre">'sigma':</span> <span class="pre">2.05}</span></em><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens.Params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.NoisyConnorStevens.States">
+<code class="sig-name descname"><span class="pre">States</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'a':</span> <span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'b':</span> <span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'h':</span> <span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'m':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'n':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'refactory':</span> <span class="pre">0.0,</span> <span class="pre">'spike':</span> <span class="pre">0.0,</span> <span class="pre">'v':</span> <span class="pre">(-60,</span> <span class="pre">-80,</span> <span class="pre">80),</span> <span class="pre">'v1':</span> <span class="pre">-60.0,</span> <span class="pre">'v2':</span> <span class="pre">-60.0}</span></em><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens.States" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.NoisyConnorStevens.Time_Scale">
+<code class="sig-name descname"><span class="pre">Time_Scale</span></code><em class="property"> <span class="pre">=</span> <span class="pre">1000.0</span></em><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens.Time_Scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.NoisyConnorStevens.gradient">
+<code class="sig-name descname"><span class="pre">gradient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#NoisyConnorStevens.gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens.gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update function of the ODE dx/dt = f(x)</p>
+<p>Computes gradient of all states, returned as dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.NoisyConnorStevens.non_gradient">
+<code class="sig-name descname"><span class="pre">non_gradient</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#NoisyConnorStevens.non_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.NoisyConnorStevens.non_gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-gradient Update</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.cpu.model.OTP">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.cpu.model.</span></code><code class="sig-name descname"><span class="pre">OTP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">num=1</span></em>, <em class="sig-param"><span class="pre">floatType=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></em>, <em class="sig-param"><span class="pre">**states_or_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#OTP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.OTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#olftrans.cpu.model.Model" title="olftrans.cpu.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">olftrans.cpu.model.Model</span></code></a></p>
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.OTP.Params">
+<code class="sig-name descname"><span class="pre">Params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Imax':</span> <span class="pre">62.13,</span> <span class="pre">'a1':</span> <span class="pre">45.0,</span> <span class="pre">'a2':</span> <span class="pre">146.1,</span> <span class="pre">'a3':</span> <span class="pre">2.539,</span> <span class="pre">'b1':</span> <span class="pre">0.8,</span> <span class="pre">'b2':</span> <span class="pre">117.2,</span> <span class="pre">'b3':</span> <span class="pre">0.9096,</span> <span class="pre">'br':</span> <span class="pre">1.0,</span> <span class="pre">'c':</span> <span class="pre">0.06546,</span> <span class="pre">'dr':</span> <span class="pre">1.0,</span> <span class="pre">'gamma':</span> <span class="pre">0.215,</span> <span class="pre">'kappa':</span> <span class="pre">8841,</span> <span class="pre">'p':</span> <span class="pre">1.0}</span></em><a class="headerlink" href="#olftrans.cpu.model.OTP.Params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.cpu.model.OTP.States">
+<code class="sig-name descname"><span class="pre">States</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'I':</span> <span class="pre">0.0,</span> <span class="pre">'duh':</span> <span class="pre">0.0,</span> <span class="pre">'uh':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">50000.0),</span> <span class="pre">'v':</span> <span class="pre">(0.0,</span> <span class="pre">0,</span> <span class="pre">1000000000.0),</span> <span class="pre">'x1':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'x2':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">'x3':</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1000.0)}</span></em><a class="headerlink" href="#olftrans.cpu.model.OTP.States" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.OTP.gradient">
+<code class="sig-name descname"><span class="pre">gradient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stimulus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#OTP.gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.OTP.gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update function of the ODE dx/dt = f(x)</p>
+<p>Computes gradient of all states, returned as dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.cpu.model.OTP.non_gradient">
+<code class="sig-name descname"><span class="pre">non_gradient</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#OTP.non_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.OTP.non_gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-gradient Update</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.cpu.model.compute_fi">
+<code class="sig-prename descclassname"><span class="pre">olftrans.cpu.model.</span></code><code class="sig-name descname"><span class="pre">compute_fi</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NeuronModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Is</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stimulus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spike_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spike'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voltage_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'v'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/cpu/model.html#compute_fi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.cpu.model.compute_fi" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[Tuple[numpy.ndarray, numpy.ndarray], <a class="reference internal" href="#olftrans.cpu.model.Model" title="olftrans.cpu.model.Model">olftrans.cpu.model.Model</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.cpu">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-olftrans.cpu" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="olftrans.data.html" class="btn btn-neutral float-right" title="olftrans.data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="olftrans.html" class="btn btn-neutral float-left" title="olftrans package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

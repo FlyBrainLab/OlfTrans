@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.utils &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">olftrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>olftrans.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for olftrans.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utility functions for simulating the synapse and neuron models&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="generate_stimulus"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.generate_stimulus">[docs]</a><span class="k">def</span> <span class="nf">generate_stimulus</span><span class="p">(</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">support</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">amplitude</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span>
+    <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stimuli generator</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        mode: shape of the waveform.</span>
+<span class="sd">        d_t: the sampling interval for the stimuli.</span>
+<span class="sd">        duration: the duration of the stimuli.</span>
+<span class="sd">        support: two time points at which the stimulus [start, end).</span>
+<span class="sd">           It&#39;s not inclusive of the end.</span>
+<span class="sd">        amplitude (float o: the amplitudes of the stimuli.</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        sigma: variance of zero-mean Gaussian noise added to the waveform.</span>
+<span class="sd">        dtype: data type of the return array</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        generate stimulus of shape (NTime, NTrial)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_generate_step</span><span class="p">(</span>
+        <span class="n">waveforms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">support</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a set of step stimuli.</span>
+
+<span class="sd">        No extra keyword argument is needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">wav</span><span class="p">,</span> <span class="n">amp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">):</span>
+            <span class="n">wav</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> <span class="o">=</span> <span class="n">amp</span>
+
+    <span class="k">def</span> <span class="nf">_generate_ramp</span><span class="p">(</span>
+        <span class="n">waveforms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">support</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a set of ramp stimuli.</span>
+
+<span class="sd">        keyword Arguments:</span>
+<span class="sd">            ratio: a real number between 0 and 1. The point between</span>
+<span class="sd">                `start` and `stop` where the stimulus reachs its peak.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ratio&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">)</span> <span class="o">*</span> <span class="n">start</span> <span class="o">+</span> <span class="n">ratio</span> <span class="o">*</span> <span class="n">stop</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">wav</span><span class="p">,</span> <span class="n">amp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">):</span>
+            <span class="n">wav</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">peak</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">amp</span><span class="p">,</span> <span class="n">peak</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+            <span class="n">wav</span><span class="p">[</span><span class="n">peak</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">peak</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_parabola</span><span class="p">(</span>
+        <span class="n">waveforms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">support</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate a set of parabolic stimuli</span>
+
+<span class="sd">        keyword Arguments:</span>
+<span class="sd">            ratio: a real number between 0 and 1. The point between</span>
+<span class="sd">                `start` and `stop` where the stimulus reachs its peak.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;ratio&quot;</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">)</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">)</span> <span class="o">*</span> <span class="n">start</span> <span class="o">+</span> <span class="n">ratio</span> <span class="o">*</span> <span class="n">stop</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">wav</span><span class="p">,</span> <span class="n">amp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">):</span>
+            <span class="n">wav</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">peak</span><span class="p">]</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">peak</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">wav</span><span class="p">[</span><span class="n">peak</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> <span class="o">=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">peak</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">_generate_spike</span><span class="p">(</span>
+        <span class="n">waveforms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">support</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate a set of poisson spikes</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            The amplitude argument is used as rate in a Poisson Process</span>
+<span class="sd">            from which the spikes are generated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">support</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+        <span class="n">waveforms</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">waveforms</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">amplitude</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">d_t</span>
+        <span class="n">waveforms</span><span class="p">[:,</span> <span class="p">:</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">waveforms</span><span class="p">[:,</span> <span class="n">stop</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">amplitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">amplitude</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">duration</span> <span class="o">+</span> <span class="n">d_t</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span><span class="p">)</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amplitude</span><span class="p">),</span> <span class="n">num</span><span class="p">)</span>
+    <span class="n">waveforms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="s2">&quot;_generate_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mode</span>
+        <span class="k">if</span> <span class="n">tmp</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Stimulus type </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2"> is not supported.&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">generator</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">tmp</span><span class="p">]</span>
+
+    <span class="n">generator</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">d_t</span><span class="p">,</span> <span class="n">support</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">waveforms</span> <span class="o">+=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">amplitude</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># for consistency with previous API</span>
+        <span class="n">waveforms</span> <span class="o">=</span> <span class="n">waveforms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">waveforms</span></div>
+
+
+<div class="viewcode-block" id="generate_spike_from_psth"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.generate_spike_from_psth">[docs]</a><span class="k">def</span> <span class="nf">generate_spike_from_psth</span><span class="p">(</span>
+    <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">psth</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">psth_t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Generate spike sequeces from a PSTH</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        d_t: the sampling interval of the input waveform.</span>
+<span class="sd">        psth: the spike rate waveform.</span>
+
+<span class="sd">    Keyword Arguments:</span>
+<span class="sd">        psth_t: time-stamps of the psth, optional. See Notes for behavior</span>
+<span class="sd">        num: number of trials to generate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple of shape (time, spikes), where spikes is a binary numpy array</span>
+<span class="sd">        of either shape :code:`(Nt, num)` if :code:`num &gt; 1`, or :code:`(Nt,)`</span>
+<span class="sd">        if :code:`num == 1`. See Notes for definition of `Nt`.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        1. If `psth_t` is specified:</span>
+<span class="sd">            - it needs to have the same dimensionality as `psth`.</span>
+<span class="sd">            - In this case, `d_t` is the desired time-step instead of the time-step of the `psth` array.</span>
+<span class="sd">            - `Nt` is given as `np.arange(psth_t.min(), psth_t.max(), dt)`</span>
+<span class="sd">        2. If `psth_t` is not specified:</span>
+<span class="sd">            - `d_t` is the time-step of the `psth` array</span>
+<span class="sd">            - `Nt` given as `len(psth)`</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from neural import utils, plot</span>
+<span class="sd">        &gt;&gt;&gt; dt, dur, start, stop, amp = 1e-5, 2, 0.5, 1.0, 100.0</span>
+<span class="sd">        &gt;&gt;&gt; spikes = utils.generate_stimulus(&quot;spike&quot;, dt, dur, (start, stop), np.full((100,), amp))</span>
+<span class="sd">        &gt;&gt;&gt; psth, psth_t = utils.PSTH(spikes, d_t=dt, window=20e-3, shift=10e-3).compute()</span>
+<span class="sd">        &gt;&gt;&gt; tt, spikes = utils.generate_spike_from_psth(dt, psth, psth_t)</span>
+<span class="sd">        &gt;&gt;&gt; plot.plot_spikes(spikes, t=tt)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">psth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psth</span><span class="p">)</span>
+    <span class="n">psth_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psth_t</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">psth</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">psth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">psth</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">psth</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Only 1D psth array is accepted, got shape (</span><span class="si">{</span><span class="n">psth</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">) after squeezing&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">psth_t</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">psth_t</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">psth</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;psth_t shape (</span><span class="si">{</span><span class="n">psth_t</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">) needs to be the same as psth shape (</span><span class="si">{</span><span class="n">psth</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">psth_t</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">psth_t</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">d_t</span><span class="p">)</span>
+
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">psth_t</span><span class="p">,</span> <span class="n">psth</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">psth</span><span class="p">))</span> <span class="o">*</span> <span class="n">d_t</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">psth</span>
+
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">psth</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">num</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">num</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d_t</span> <span class="o">*</span> <span class="n">rate</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">&lt;</span> <span class="n">d_t</span> <span class="o">*</span> <span class="n">rate</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">T</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="compute_psth"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.compute_psth">[docs]</a><span class="k">def</span> <span class="nf">compute_psth</span><span class="p">(</span>
+    <span class="n">spikes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute the peri-stimulus time histogram</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        spikes: spike sequences.</span>
+<span class="sd">        d_t: time step.</span>
+<span class="sd">        window: the size of the window.</span>
+<span class="sd">        interval: the time shift between two consecutive windows.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        rates: the average spike rate for each windows.</span>
+<span class="sd">        stamps: the time stamp for each windows.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">spikes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">cum_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">d_t</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">d_t</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span> <span class="o">-</span> <span class="n">d_t</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span> <span class="o">//</span> <span class="n">d_t</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">start</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">stop</span><span class="p">)]</span>
+
+    <span class="n">rates</span> <span class="o">=</span> <span class="p">(</span><span class="n">cum_spikes</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">-</span> <span class="n">cum_spikes</span><span class="p">[</span><span class="n">start</span><span class="p">])</span> <span class="o">/</span> <span class="n">window</span>
+    <span class="n">stamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span> <span class="o">*</span> <span class="n">interval</span> <span class="o">-</span> <span class="n">d_t</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rates</span><span class="p">,</span> <span class="n">stamps</span></div>
+
+
+<div class="viewcode-block" id="PSTH"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.PSTH">[docs]</a><span class="k">class</span> <span class="nc">PSTH</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">spikes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">d_t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">window</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20e-3</span><span class="p">,</span>
+        <span class="n">shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10e-3</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span> <span class="o">=</span> <span class="n">d_t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spikes</span> <span class="o">=</span> <span class="n">spikes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PSTH.compute"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.PSTH.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">tp</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spikes</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">spikes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">spikes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+        <span class="n">cum_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+
+        <span class="n">duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cum_spikes</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">duration</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">duration</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="n">start</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">stop</span><span class="p">)]</span>
+
+        <span class="n">rates</span> <span class="o">=</span> <span class="p">(</span><span class="n">cum_spikes</span><span class="p">[</span><span class="n">stop</span><span class="p">]</span> <span class="o">-</span> <span class="n">cum_spikes</span><span class="p">[</span><span class="n">start</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span>
+        <span class="n">stamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">rates</span><span class="p">,</span> <span class="n">stamps</span></div>
+
+<div class="viewcode-block" id="PSTH.merge"><a class="viewcode-back" href="../../olftrans.html#olftrans.utils.PSTH.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">others</span><span class="p">:</span> <span class="n">tp</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">others</span><span class="p">,</span> <span class="s2">&quot;__len__&quot;</span><span class="p">):</span>
+            <span class="n">others</span> <span class="o">=</span> <span class="p">[</span><span class="n">others</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">other</span> <span class="ow">in</span> <span class="n">others</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">psth</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">other</span> <span class="ow">in</span> <span class="n">others</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">psth</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">psth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

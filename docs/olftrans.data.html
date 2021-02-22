@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans.data package &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="olftrans.neurodriver package" href="olftrans.neurodriver.html" />
+    <link rel="prev" title="olftrans.cpu package" href="olftrans.cpu.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">olftrans</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="olftrans.html">olftrans package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="olftrans.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="olftrans.cpu.html">olftrans.cpu package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">olftrans.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.html">olftrans.neurodriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.errors">olftrans.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.fbl">olftrans.fbl module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.olftrans">olftrans.olftrans module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.plot">olftrans.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.utils">olftrans.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">olftrans</a> &raquo;</li>
+        
+          <li><a href="olftrans.html">olftrans package</a> &raquo;</li>
+        
+      <li>olftrans.data package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/olftrans.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="olftrans-data-package">
+<h1>olftrans.data package<a class="headerlink" href="#olftrans-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-olftrans.data.data">
+<span id="olftrans-data-data-module"></span><h2>olftrans.data.data module<a class="headerlink" href="#module-olftrans.data.data" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="olftrans.data.data.Data">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.data.data.</span></code><code class="sig-name descname"><span class="pre">Data</span></code><a class="reference internal" href="_modules/olftrans/data/data.html#Data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="olftrans.data.data.Data.find">
+<code class="sig-name descname"><span class="pre">find</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#Data.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.Data.find" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_type</strong> (<em>Union</em><em>[</em><em>otp</em><em>, </em><em>rest</em><em>, </em><em>fi</em><em>]</em>) – </p></li>
+<li><p><strong>key</strong> (<em>str</em>) – </p></li>
+<li><p><strong>loc_args</strong> (<em>Callable</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.data.data.Data.save">
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#Data.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.Data.save" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_type</strong> (<em>Union</em><em>[</em><em>otp</em><em>, </em><em>rest</em><em>, </em><em>fi</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.data.data.Data.setup">
+<code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#Data.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.Data.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.data.data.DataFI">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.data.data.</span></code><code class="sig-name descname"><span class="pre">DataFI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Currents</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequencies</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">InputVar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SpikeVar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Params</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Repeats</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#DataFI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.DataFI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Model</strong> (<em>str</em>) – </p></li>
+<li><p><strong>Currents</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>Frequencies</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>InputVar</strong> (<em>str</em>) – </p></li>
+<li><p><strong>SpikeVar</strong> (<em>str</em>) – </p></li>
+<li><p><strong>Params</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>Repeats</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.Currents">
+<code class="sig-name descname"><span class="pre">Currents</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.Currents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.Frequencies">
+<code class="sig-name descname"><span class="pre">Frequencies</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.Frequencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.InputVar">
+<code class="sig-name descname"><span class="pre">InputVar</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.InputVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.Model">
+<code class="sig-name descname"><span class="pre">Model</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.Model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.Params">
+<code class="sig-name descname"><span class="pre">Params</span></code><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.Params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.Repeats">
+<code class="sig-name descname"><span class="pre">Repeats</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.Repeats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataFI.SpikeVar">
+<code class="sig-name descname"><span class="pre">SpikeVar</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataFI.SpikeVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.data.data.DataMetadata">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.data.data.</span></code><code class="sig-name descname"><span class="pre">DataMetadata</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dur</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savgol_window</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savgol_order</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#DataMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.DataMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>dur</strong> (<em>float</em>) – </p></li>
+<li><p><strong>start</strong> (<em>float</em>) – </p></li>
+<li><p><strong>stop</strong> (<em>float</em>) – </p></li>
+<li><p><strong>savgol_window</strong> (<em>int</em>) – </p></li>
+<li><p><strong>savgol_order</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.dt">
+<code class="sig-name descname"><span class="pre">dt</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.dt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.dur">
+<code class="sig-name descname"><span class="pre">dur</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.dur" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.savgol_order">
+<code class="sig-name descname"><span class="pre">savgol_order</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.savgol_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.savgol_window">
+<code class="sig-name descname"><span class="pre">savgol_window</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.savgol_window" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.start">
+<code class="sig-name descname"><span class="pre">start</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataMetadata.stop">
+<code class="sig-name descname"><span class="pre">stop</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.data.data.DataMetadata.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.data.data.DataOTP">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.data.data.</span></code><code class="sig-name descname"><span class="pre">DataOTP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Amplitude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Br</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Peak</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SS</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#DataOTP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.DataOTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Model</strong> (<em>str</em>) – </p></li>
+<li><p><strong>Amplitude</strong> (<em>float</em>) – </p></li>
+<li><p><strong>Br</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>Dr</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>Peak</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>SS</strong> (<em>numpy.ndarray</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.Amplitude">
+<code class="sig-name descname"><span class="pre">Amplitude</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.Amplitude" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.Br">
+<code class="sig-name descname"><span class="pre">Br</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.Br" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.Dr">
+<code class="sig-name descname"><span class="pre">Dr</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.Dr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.Model">
+<code class="sig-name descname"><span class="pre">Model</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.Model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.Peak">
+<code class="sig-name descname"><span class="pre">Peak</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.Peak" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataOTP.SS">
+<code class="sig-name descname"><span class="pre">SS</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataOTP.SS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.data.data.DataRest">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.data.data.</span></code><code class="sig-name descname"><span class="pre">DataRest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParamKey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParamValue</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Smoothen</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequencies</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">InputVar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SpikeVar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Params</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Repeats</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/data.html#DataRest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.data.DataRest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Model</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ParamKey</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ParamValue</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>Smoothen</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>Frequencies</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>InputVar</strong> (<em>str</em>) – </p></li>
+<li><p><strong>SpikeVar</strong> (<em>str</em>) – </p></li>
+<li><p><strong>Params</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>Repeats</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.Frequencies">
+<code class="sig-name descname"><span class="pre">Frequencies</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.Frequencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.InputVar">
+<code class="sig-name descname"><span class="pre">InputVar</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.InputVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.Model">
+<code class="sig-name descname"><span class="pre">Model</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.Model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.ParamKey">
+<code class="sig-name descname"><span class="pre">ParamKey</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.ParamKey" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.ParamValue">
+<code class="sig-name descname"><span class="pre">ParamValue</span></code><em class="property"><span class="pre">:</span> <span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.ParamValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.Params">
+<code class="sig-name descname"><span class="pre">Params</span></code><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.Params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.Repeats">
+<code class="sig-name descname"><span class="pre">Repeats</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.Repeats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.Smoothen">
+<code class="sig-name descname"><span class="pre">Smoothen</span></code><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.Smoothen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.data.data.DataRest.SpikeVar">
+<code class="sig-name descname"><span class="pre">SpikeVar</span></code><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#olftrans.data.data.DataRest.SpikeVar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.data.hallem_carlson">
+<span id="olftrans-data-hallem-carlson-module"></span><h2>olftrans.data.hallem_carlson module<a class="headerlink" href="#module-olftrans.data.hallem_carlson" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="olftrans.data.hallem_carlson.get_data">
+<code class="sig-prename descclassname"><span class="pre">olftrans.data.hallem_carlson.</span></code><code class="sig-name descname"><span class="pre">get_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/hallem_carlson.html#get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.hallem_carlson.get_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.data.kreher">
+<span id="olftrans-data-kreher-module"></span><h2>olftrans.data.kreher module<a class="headerlink" href="#module-olftrans.data.kreher" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="olftrans.data.kreher.get_data">
+<code class="sig-prename descclassname"><span class="pre">olftrans.data.kreher.</span></code><code class="sig-name descname"><span class="pre">get_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/kreher.html#get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.kreher.get_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.data.physiology">
+<span id="olftrans-data-physiology-module"></span><h2>olftrans.data.physiology module<a class="headerlink" href="#module-olftrans.data.physiology" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="olftrans.data.physiology.get_data">
+<code class="sig-prename descclassname"><span class="pre">olftrans.data.physiology.</span></code><code class="sig-name descname"><span class="pre">get_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'antenna_data.h5'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/physiology.html#get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.physiology.get_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.data.utils">
+<span id="olftrans-data-utils-module"></span><h2>olftrans.data.utils module<a class="headerlink" href="#module-olftrans.data.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="olftrans.data.utils.process_io">
+<code class="sig-prename descclassname"><span class="pre">olftrans.data.utils.</span></code><code class="sig-name descname"><span class="pre">process_io</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stim_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psth_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/data/utils.html#process_io"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.data.utils.process_io" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process I/O</p>
+<p>This function takes stimulus and PSTH, interpolates both
+at the same time resolution and make sure stimulus and
+PSTH are the same length. Padding is added with terminal values
+as needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stim_t</strong> – Raw Stimulus Time Series</p></li>
+<li><p><strong>stim</strong> – Raw Stimulus
+- Should have the same dimensionality as <cite>stim_t</cite></p></li>
+<li><p><strong>psth_t</strong> – Raw PSTH Time Stamps</p></li>
+<li><p><strong>psth</strong> – Raw PSTH
+- Should have the same dimensionality as <cite>psth_t</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>dt</strong> – time step at which to interpolate the stimulus and PSTH</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>interpolated time series
+stim: interpolated stimulus
+psth: interpolated PSTH</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>t</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-olftrans.data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="olftrans.neurodriver.html" class="btn btn-neutral float-right" title="olftrans.neurodriver package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="olftrans.cpu.html" class="btn btn-neutral float-left" title="olftrans.cpu package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

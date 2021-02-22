@@ -1,0 +1,1097 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>olftrans package &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="olftrans.cpu package" href="olftrans.cpu.html" />
+    <link rel="prev" title="olftrans" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">olftrans</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">olftrans package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.cpu.html">olftrans.cpu package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.data.html">olftrans.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.html">olftrans.neurodriver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans.errors">olftrans.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans.fbl">olftrans.fbl module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans.olftrans">olftrans.olftrans module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans.plot">olftrans.plot module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans.utils">olftrans.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-olftrans">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">olftrans</a> &raquo;</li>
+        
+      <li>olftrans package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/olftrans.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="olftrans-package">
+<h1>olftrans package<a class="headerlink" href="#olftrans-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="olftrans.cpu.html">olftrans.cpu package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.cpu.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.cpu.html#module-olftrans.cpu.model">olftrans.cpu.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.cpu.html#module-olftrans.cpu">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="olftrans.data.html">olftrans.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data.data">olftrans.data.data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data.hallem_carlson">olftrans.data.hallem_carlson module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data.kreher">olftrans.data.kreher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data.physiology">olftrans.data.physiology module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data.utils">olftrans.data.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.data.html#module-olftrans.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="olftrans.neurodriver.html">olftrans.neurodriver package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html">olftrans.neurodriver.NDComponents package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents.NoisyConnorStevens">olftrans.neurodriver.NDComponents.NoisyConnorStevens module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents.OTP">olftrans.neurodriver.NDComponents.OTP module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="olftrans.neurodriver.NDComponents.html#module-olftrans.neurodriver.NDComponents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.html#module-olftrans.neurodriver.model">olftrans.neurodriver.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="olftrans.neurodriver.html#module-olftrans.neurodriver">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-olftrans.errors">
+<span id="olftrans-errors-module"></span><h2>olftrans.errors module<a class="headerlink" href="#module-olftrans.errors" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt id="olftrans.errors.MissingFileException">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.errors.</span></code><code class="sig-name descname"><span class="pre">MissingFileException</span></code><a class="reference internal" href="_modules/olftrans/errors.html#MissingFileException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.errors.MissingFileException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="olftrans.errors.MissingFileWarning">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.errors.</span></code><code class="sig-name descname"><span class="pre">MissingFileWarning</span></code><a class="reference internal" href="_modules/olftrans/errors.html#MissingFileWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.errors.MissingFileWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Warning</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.fbl">
+<span id="olftrans-fbl-module"></span><h2>olftrans.fbl module<a class="headerlink" href="#module-olftrans.fbl" title="Permalink to this headline">¶</a></h2>
+<p>FlyBrainLab compatible module</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>Config: configuration of FBL Module
+FBL: FlyBrainLab-compatible module to be consumed by other FBL packages</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.fbl.LARVA">
+<code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">LARVA</span></code><a class="headerlink" href="#olftrans.fbl.LARVA" title="Permalink to this definition">¶</a></dt>
+<dd><p>an instance of FBL class that is loaded with Larva (Kreher2005) data</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.ADULT">
+<code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">ADULT</span></code><a class="headerlink" href="#olftrans.fbl.ADULT" title="Permalink to this definition">¶</a></dt>
+<dd><p>an instance of FBL class that is loaded with Adult (HallemCarlson20016) data</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.fbl.Config">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">Config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration for FlyBrainLab-compatible Module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NO</strong> (<em>Iterable</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>affs</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>drs</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>receptor_names</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>resting</strong> (<em>float</em>) – </p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.NO">
+<code class="sig-name descname"><span class="pre">NO</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.fbl.Config.NO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of OSNs per Receptor Type</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.NR">
+<code class="sig-name descname"><span class="pre">NR</span></code><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#olftrans.fbl.Config.NR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of Receptor Types</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.affs">
+<code class="sig-name descname"><span class="pre">affs</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.fbl.Config.affs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Affinity Values</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.drs">
+<code class="sig-name descname"><span class="pre">drs</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.Config.drs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dissociation Rates</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.receptor_names">
+<code class="sig-name descname"><span class="pre">receptor_names</span></code><em class="property"><span class="pre">:</span> <span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.Config.receptor_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of receptors of length NR</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.resting">
+<code class="sig-name descname"><span class="pre">resting</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.Config.resting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resting OSN Spike Rates [Hz]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.Config.sigma">
+<code class="sig-name descname"><span class="pre">sigma</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.Config.sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>NoisyConnorStevens Noise Standard Deviation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="olftrans.fbl.FBL">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">FBL</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">graph</span></em>, <em class="sig-param"><span class="pre">inputs</span></em>, <em class="sig-param"><span class="pre">outputs</span></em>, <em class="sig-param"><span class="pre">extra_comps=&lt;factory&gt;</span></em>, <em class="sig-param"><span class="pre">config=None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>FlyBrainLab-compatible Module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkx.classes.multidigraph.MultiDiGraph</em>) – </p></li>
+<li><p><strong>inputs</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>outputs</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>extra_comps</strong> (<em>List</em><em>[</em><em>neurokernel.LPU.NDComponents.NDComponent.NDComponent</em><em>]</em>) – </p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#olftrans.fbl.Config" title="olftrans.fbl.Config"><em>olftrans.fbl.Config</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.affinities">
+<code class="sig-name descname"><span class="pre">affinities</span></code><em class="property"><span class="pre">:</span> <span class="pre">pandas.core.frame.DataFrame</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.FBL.affinities" title="Permalink to this definition">¶</a></dt>
+<dd><p>a pandas dataframe with affinities saved as reference
+- index: odorants
+- columns: receptor names</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.config">
+<code class="sig-name descname"><span class="pre">config</span></code><em class="property"><span class="pre">:</span> <a class="reference internal" href="#olftrans.fbl.Config" title="olftrans.fbl.Config"><span class="pre">olftrans.fbl.Config</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#olftrans.fbl.FBL.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>configuration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.fbl.FBL.create_from_config">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">create_from_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL.create_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL.create_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Instance from Config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg</strong> (<a class="reference internal" href="#olftrans.fbl.Config" title="olftrans.fbl.Config"><em>olftrans.fbl.Config</em></a>) – Config instance that specifies the configuration of the module</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new FBL instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.extra_comps">
+<code class="sig-name descname"><span class="pre">extra_comps</span></code><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.fbl.FBL.extra_comps" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of neurodriver extra components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.fbl.FBL.get_config">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fbl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL.get_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse Config from given FBL instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#olftrans.fbl.Config" title="olftrans.fbl.Config">olftrans.fbl.Config</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.graph">
+<code class="sig-name descname"><span class="pre">graph</span></code><em class="property"><span class="pre">:</span> <span class="pre">networkx.classes.multidigraph.MultiDiGraph</span></em><a class="headerlink" href="#olftrans.fbl.FBL.graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>networkx graph describing the executable circuit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.inputs">
+<code class="sig-name descname"><span class="pre">inputs</span></code><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#olftrans.fbl.FBL.inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>input variable and uids dictionary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.fbl.FBL.outputs">
+<code class="sig-name descname"><span class="pre">outputs</span></code><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#olftrans.fbl.FBL.outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>output variable and uids dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.fbl.FBL.simulate">
+<code class="sig-name descname"><span class="pre">simulate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_var_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL.simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Affinities and Change Circuit Accordingly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>numpy.ndarray</em>) – input time array</p></li>
+<li><p><strong>inputs</strong> (<em>Any</em>) – input data
+- if is <cite>BaseInputProcessor</cite> instance, passed to LPU directly
+- if is dictionary, passed to ArrayInputProcessor if is compatible</p></li>
+<li><p><strong>record_var_list</strong> (<em>Iterable</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>sample_interval</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[FileInput, FileOutput, LPU]</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Keyword Argumnets:</dt><dd><p>record_var_list: [(var, uids)]
+sample_interval: interval at which output is recorded</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Input Processor
+fo: Output Processor
+lpu: LPU instance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>fi</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>inputs</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>record_var_list</strong> (<em>Iterable</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>Iterable</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>sample_interval</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.fbl.FBL.update_affs">
+<code class="sig-name descname"><span class="pre">update_affs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">affs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL.update_affs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL.update_affs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Affinities and Change Circuit Accordingly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.fbl.FBL.update_graph_attributes">
+<code class="sig-name descname"><span class="pre">update_graph_attributes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'otp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_predictive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#FBL.update_graph_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.FBL.update_graph_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update Attributes of the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dict</strong> (<em>dict</em>) – a dictionary of {attr: value}</p></li>
+<li><p><strong>nodes</strong> (<em>Union</em><em>[</em><em>otp</em><em>, </em><em>bsg</em><em>]</em>) – </p></li>
+<li><p><strong>receptor</strong> (<em>Iterable</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>node_predictive</strong> (<em>Callable</em><em>[</em><em>networkx.classes.reportviews.NodeView</em><em>, </em><em>bool</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>nodes</strong> – nodes to update, ‘otp’ or ‘bsg’</p></li>
+<li><p><strong>receptor</strong> – filter nodes with receptor</p></li>
+<li><p><strong>node_predictive</strong> – additional filtering of nodes from <cite>nx.nodes</cite> call</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fbl</span><span class="o">.</span><span class="n">update_graph_attributes</span><span class="p">({</span><span class="s1">&#39;sigma&#39;</span><span class="p">:</span><span class="mf">1.</span><span class="p">},</span> <span class="n">nodes</span><span class="o">=</span><span class="s1">&#39;bsg&#39;</span><span class="p">,</span> <span class="n">receptor</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.fbl.load_adult_affinities">
+<code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">load_adult_affinities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#load_adult_affinities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.load_adult_affinities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load HallemCarlson Spike Data and Parse to Affinities</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.fbl.load_larva_affinities">
+<code class="sig-prename descclassname"><span class="pre">olftrans.fbl.</span></code><code class="sig-name descname"><span class="pre">load_larva_affinities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/fbl.html#load_larva_affinities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.fbl.load_larva_affinities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load HallemCarlson Spike Data and Parse to Affinities</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.olftrans">
+<span id="olftrans-olftrans-module"></span><h2>olftrans.olftrans module<a class="headerlink" href="#module-olftrans.olftrans" title="Permalink to this headline">¶</a></h2>
+<p>Main module of Olfactory Transduction Module</p>
+<p>The module deals with estimation procedures to obtain
+binding and dissociation rates from peak/steady state spike rates
+for given odorant.</p>
+<p>The main entry of the module is the <cite>estimate</cite> function.</p>
+<dl class="py class">
+<dt id="olftrans.olftrans.Estimation">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">Estimation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steady_state_spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steady_state_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">br</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#Estimation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.Estimation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Estimation Result</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<em>float</em>) – </p></li>
+<li><p><strong>steady_state_spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>peak_spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>steady_state_current</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>peak_current</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>affs</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>br</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>dr</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.affs">
+<code class="sig-name descname"><span class="pre">affs</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.affs" title="Permalink to this definition">¶</a></dt>
+<dd><p>affinity values</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.br">
+<code class="sig-name descname"><span class="pre">br</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.br" title="Permalink to this definition">¶</a></dt>
+<dd><p>binding rates</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.dr">
+<code class="sig-name descname"><span class="pre">dr</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.dr" title="Permalink to this definition">¶</a></dt>
+<dd><p>dissociation rates</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.peak_current">
+<code class="sig-name descname"><span class="pre">peak_current</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.peak_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>peak current estimated from peak spike rate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.peak_spike_rate">
+<code class="sig-name descname"><span class="pre">peak_spike_rate</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.peak_spike_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>peak spike rate.
+This is the part of the input to estimation procedure stored as reference</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.sigma">
+<code class="sig-name descname"><span class="pre">sigma</span></code><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>noise parameter of the NoisyConnorStevens neuron</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.steady_state_current">
+<code class="sig-name descname"><span class="pre">steady_state_current</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.steady_state_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>steady-state current estimated from steady-state spike rate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="olftrans.olftrans.Estimation.steady_state_spike_rate">
+<code class="sig-name descname"><span class="pre">steady_state_spike_rate</span></code><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#olftrans.olftrans.Estimation.steady_state_spike_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>steady-state spike rate.
+This is the part of the input to estimation procedure stored as reference</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resting_spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steady_state_spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_spike_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimation Procedure</p>
+<p>The estimation procedure assumes that the input concentration waveform
+is a step-waveform with an amplitude of <cite>amplitude</cite>. The Peak and
+Steady-State spike rate of the OSN measured is then used to estimate the
+binding and dissociation rates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amplitude</strong> (<em>float</em>) – concentration waveform’s amplitdue</p></li>
+<li><p><strong>resting_spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – resting OSN spike rate</p></li>
+<li><p><strong>steady_state_spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – steady-state OSN spike rate under input</p></li>
+<li><p><strong>peak_spike_rate</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>decay_time</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>cache</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>peak_spike_rate</strong> – peak OSN spike rate under input</p></li>
+<li><p><strong>decay_time</strong> – Time for OSN spike to settle back to resting after odorant input offset</p></li>
+<li><p><strong>cache</strong> – whether to save the data generated by the estimation result</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate_affinity">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate_affinity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steady_state_current</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate_affinity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate_affinity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Affinity Value From Steady-State Current</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amplitude</strong> (<em>float</em>) – amplitude of the step odorant concentration waveform (in unit of [ppm])</p></li>
+<li><p><strong>steady_state_current</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – steady-state OTP output current value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>estimated affinity value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[float, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate_current">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate_current</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Current Value given Spike Rate</p>
+<p>The current value is estimated from the <cite>spike_rate</cite> using the Frequency-Current (F-I)
+curve that is parameterized by the noise parameter <cite>sigma</cite>. If the F-I curve of the
+provided <cite>sigma</cite> value is not found, the F-I curve is calculated using <cite>sigma</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – output OSN spike rate</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – noise parameter of the NoisyConnorStevens Model
+This is used to find the appropriate F-I curve</p></li>
+<li><p><strong>sigma_atol</strong> (<em>float</em>) – </p></li>
+<li><p><strong>sigma_rtol</strong> (<em>float</em>) – </p></li>
+<li><p><strong>cache</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>sigma_atol</strong> – absolute tolerence of checking if the required <cite>sigma</cite> is close to previously cached values</p></li>
+<li><p><strong>sigma_atol</strong> – relative tolerence of checking if the required <cite>sigma</cite> is close to previously cached values</p></li>
+<li><p><strong>cache</strong> – save results of F-I curve if it is run due to <cite>sigma</cite> mismatch</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>estimated currents</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[float, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate_dissociation">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate_dissociation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affinity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate_dissociation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate_dissociation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Dissociation Rate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amplitude</strong> (<em>float</em>) – concentration amplitude</p></li>
+<li><p><strong>affinity</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – affinity values</p></li>
+<li><p><strong>peak_current</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>decay_time</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>peak_current</strong> – maximum current</p></li>
+<li><p><strong>decay_time</strong> – settling time after offset of odorant input</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Estimated dissociation rate</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[float, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate_resting_spike_rate">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate_resting_spike_rate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate_resting_spike_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate_resting_spike_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Resting Spike Rate from Sigma Value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sigma</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – noise parameter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>estimated resting spike rate</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[float, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.estimate_sigma">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">estimate_sigma</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resting_spike_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#estimate_sigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.estimate_sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Sigma Value given Resting Spike Rate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>resting_spike_rate</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>cache</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[float, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.olftrans.run">
+<code class="sig-prename descclassname"><span class="pre">olftrans.olftrans.</span></code><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waveform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">br</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/olftrans.html#run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.olftrans.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.plot">
+<span id="olftrans-plot-module"></span><h2>olftrans.plot module<a class="headerlink" href="#module-olftrans.plot" title="Permalink to this headline">¶</a></h2>
+<p>Plotting functions</p>
+<dl class="py function">
+<dt id="olftrans.plot.plot_mat">
+<code class="sig-prename descclassname"><span class="pre">olftrans.plot.</span></code><code class="sig-name descname"><span class="pre">plot_mat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbar_kw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/plot.html#plot_mat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.plot.plot_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot Matrix with formatted time axes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>numpy.ndarray</em>) – the matrix to be plotted, it should of shape (N, Time)</p></li>
+<li><p><strong>t</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>ax</strong> (<em>Optional</em><em>[</em><em>matplotlib.axes._axes.Axes</em><em>]</em>) – </p></li>
+<li><p><strong>vmin</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>vmax</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>cbar_kw</strong> (<em>Optional</em><em>[</em><em>dict</em><em>]</em>) – </p></li>
+<li><p><strong>cmap</strong> (<em>Optional</em><em>[</em><em>Any</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>t</strong> – time axes for the spikes, use arange if not provided</p></li>
+<li><p><strong>ax</strong> – which axis to plot into, create one if not provided</p></li>
+<li><p><strong>cax</strong> – which axis to plot colorbar into
+- if instance of axis, plot into that axis
+- if is True, steal axis from <cite>ax</cite></p></li>
+<li><p><strong>vmin</strong> – minimum value for the imshow</p></li>
+<li><p><strong>vmax</strong> – maximum value for the imshow</p></li>
+<li><p><strong>cbar_kw</strong> – keyword arguments to be passed into the colorbar creation</p></li>
+<li><p><strong>cmap</strong> – colormap to use</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the axis that the raster is plotted into
+cbar: colorbar object, only returned if cax is <cite>True</cite> or a <cite>plt.Axes</cite> instance</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ax</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wav</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">generate_stimulus</span><span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">),</span> <span class="n">amps</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">,</span><span class="n">cbar</span> <span class="o">=</span> <span class="n">plot_mat</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">cbar_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="s1">&#39;test&#39;</span><span class="p">},</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gnuplot</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="p">,</span> <span class="o">=</span> <span class="n">plot_mat</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">cbar_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="s1">&#39;test&#39;</span><span class="p">},</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gnuplot</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.plot.plot_multiple">
+<code class="sig-prename descclassname"><span class="pre">olftrans.plot.</span></code><code class="sig-name descname"><span class="pre">plot_multiple</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/plot.html#plot_multiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.plot.plot_multiple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot multiple data curves against a same x-axis on mulitple subplots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datax</strong> (<em>darray</em>) – the data point on the x-axis.</p></li>
+<li><p><strong>*args</strong> – each entry of args is a list containing multiple sets of data
+and parameters that will be plotted in the same subplot.
+An entry should follow the format <cite>(data_1, param_1, …)</cite>,
+where each of the <cite>data_i</cite> is a numpy array, and each of the
+<cite>param_i</cite> is a <cite>dict</cite> of the parameters for ploting <cite>data_i</cite> against
+<cite>data_x</cite>. Alternatively, an entry can simply be an numpy array. In
+this case, only one curve will be plotted in the corresponding
+subplot.</p></li>
+<li><p><strong>data_x</strong> (<em>numpy.ndarray</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>figw</strong> (<em>float</em>) – the figure width.</p></li>
+<li><p><strong>figh</strong> (<em>float</em>) – the figure height.</p></li>
+<li><p><strong>xlabel</strong> (<em>str</em>) – the label of the x-axis.</p></li>
+<li><p><strong>additional keyword arguments will propagate into the private</strong> (<em>The</em>) – </p></li>
+<li><p><strong>method _plot</strong><strong>, </strong><strong>and eventually into the pyplot.plot method.</strong> (<em>plotting</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[matplotlib.figure.Figure, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.plot.plot_spikes">
+<code class="sig-prename descclassname"><span class="pre">olftrans.plot.</span></code><code class="sig-name descname"><span class="pre">plot_spikes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/plot.html#plot_spikes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.plot.plot_spikes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot Spikes in raster format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spikes</strong> (<em>numpy.ndarray</em>) – the spike states in binary format, where 1 stands for a spike.
+The shape of the spikes should either be (N_times, ) or (N_trials, N_times)</p></li>
+<li><p><strong>t</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>ax</strong> (<em>Optional</em><em>[</em><em>matplotlib.axes._axes.Axes</em><em>]</em>) – </p></li>
+<li><p><strong>markersize</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>color</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>t</strong> – time axes for the spikes, use arange if not provided</p></li>
+<li><p><strong>ax</strong> – which axis to plot into, create one if not provided</p></li>
+<li><p><strong>markersize</strong> – size of raster</p></li>
+<li><p><strong>color</strong> – color for the raster. Any acceptable type of <cite>matplotlib.pyplot.plot</cite>’s
+color argument is accepted.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the axis that the raster is plotted into</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ax</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.plot.yyaxis">
+<code class="sig-prename descclassname"><span class="pre">olftrans.plot.</span></code><code class="sig-name descname"><span class="pre">yyaxis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'red'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/plot.html#yyaxis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.plot.yyaxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create A second axis with colored spine/ticks/label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib.axes._axes.Axes</em>) – ax to create another y-axis from</p></li>
+<li><p><strong>c</strong> (<em>color</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>c</strong> – Color</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>axis that shares x with <cite>ax</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ax2</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans.utils">
+<span id="olftrans-utils-module"></span><h2>olftrans.utils module<a class="headerlink" href="#module-olftrans.utils" title="Permalink to this headline">¶</a></h2>
+<p>Utility functions for simulating the synapse and neuron models</p>
+<dl class="py class">
+<dt id="olftrans.utils.PSTH">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.utils.</span></code><code class="sig-name descname"><span class="pre">PSTH</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#PSTH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.PSTH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spikes</strong> (<em>numpy.ndarray</em>) – </p></li>
+<li><p><strong>d_t</strong> (<em>float</em>) – </p></li>
+<li><p><strong>window</strong> (<em>float</em>) – </p></li>
+<li><p><strong>shift</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="olftrans.utils.PSTH.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#PSTH.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.PSTH.compute" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[numpy.ndarray, numpy.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="olftrans.utils.PSTH.merge">
+<code class="sig-name descname"><span class="pre">merge</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">others</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#PSTH.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.PSTH.merge" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>others</strong> (<em>Union</em><em>[</em><em>numpy.ndarray</em><em>, </em><em>Iterable</em><em>[</em><em>numpy.ndarray</em><em>]</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.utils.compute_psth">
+<code class="sig-prename descclassname"><span class="pre">olftrans.utils.</span></code><code class="sig-name descname"><span class="pre">compute_psth</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#compute_psth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.compute_psth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the peri-stimulus time histogram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spikes</strong> (<em>numpy.ndarray</em>) – spike sequences.</p></li>
+<li><p><strong>d_t</strong> (<em>float</em>) – time step.</p></li>
+<li><p><strong>window</strong> (<em>float</em>) – the size of the window.</p></li>
+<li><p><strong>interval</strong> (<em>float</em>) – the time shift between two consecutive windows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the average spike rate for each windows.
+stamps: the time stamp for each windows.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>rates</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.utils.generate_spike_from_psth">
+<code class="sig-prename descclassname"><span class="pre">olftrans.utils.</span></code><code class="sig-name descname"><span class="pre">generate_spike_from_psth</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psth_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#generate_spike_from_psth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.generate_spike_from_psth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate spike sequeces from a PSTH</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d_t</strong> (<em>float</em>) – the sampling interval of the input waveform.</p></li>
+<li><p><strong>psth</strong> (<em>numpy.ndarray</em>) – the spike rate waveform.</p></li>
+<li><p><strong>psth_t</strong> (<em>Optional</em><em>[</em><em>numpy.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>num</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>psth_t</strong> – time-stamps of the psth, optional. See Notes for behavior</p></li>
+<li><p><strong>num</strong> – number of trials to generate</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple of shape (time, spikes), where spikes is a binary numpy array
+of either shape <code class="code docutils literal notranslate"><span class="pre">(Nt,</span> <span class="pre">num)</span></code> if <code class="code docutils literal notranslate"><span class="pre">num</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>, or <code class="code docutils literal notranslate"><span class="pre">(Nt,)</span></code>
+if <code class="code docutils literal notranslate"><span class="pre">num</span> <span class="pre">==</span> <span class="pre">1</span></code>. See Notes for definition of <cite>Nt</cite>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tuple[numpy.ndarray, numpy.ndarray]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>If <cite>psth_t</cite> is specified:</dt><dd><ul class="simple">
+<li><p>it needs to have the same dimensionality as <cite>psth</cite>.</p></li>
+<li><p>In this case, <cite>d_t</cite> is the desired time-step instead of the time-step of the <cite>psth</cite> array.</p></li>
+<li><p><cite>Nt</cite> is given as <cite>np.arange(psth_t.min(), psth_t.max(), dt)</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>If <cite>psth_t</cite> is not specified:</dt><dd><ul class="simple">
+<li><p><cite>d_t</cite> is the time-step of the <cite>psth</cite> array</p></li>
+<li><p><cite>Nt</cite> given as <cite>len(psth)</cite></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">neural</span> <span class="kn">import</span> <span class="n">utils</span><span class="p">,</span> <span class="n">plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">amp</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spikes</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">generate_stimulus</span><span class="p">(</span><span class="s2">&quot;spike&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">100</span><span class="p">,),</span> <span class="n">amp</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">psth</span><span class="p">,</span> <span class="n">psth_t</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">PSTH</span><span class="p">(</span><span class="n">spikes</span><span class="p">,</span> <span class="n">d_t</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mf">20e-3</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mf">10e-3</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span><span class="p">,</span> <span class="n">spikes</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">generate_spike_from_psth</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">psth</span><span class="p">,</span> <span class="n">psth_t</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="o">.</span><span class="n">plot_spikes</span><span class="p">(</span><span class="n">spikes</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="olftrans.utils.generate_stimulus">
+<code class="sig-prename descclassname"><span class="pre">olftrans.utils.</span></code><code class="sig-name descname"><span class="pre">generate_stimulus</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">mode</span></em>, <em class="sig-param"><span class="pre">d_t</span></em>, <em class="sig-param"><span class="pre">duration</span></em>, <em class="sig-param"><span class="pre">support</span></em>, <em class="sig-param"><span class="pre">amplitude</span></em>, <em class="sig-param"><span class="pre">sigma=None</span></em>, <em class="sig-param"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/utils.html#generate_stimulus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.utils.generate_stimulus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stimuli generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<em>str</em>) – shape of the waveform.</p></li>
+<li><p><strong>d_t</strong> (<em>float</em>) – the sampling interval for the stimuli.</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – the duration of the stimuli.</p></li>
+<li><p><strong>support</strong> (<em>Iterable</em><em>[</em><em>float</em><em>]</em>) – two time points at which the stimulus [start, end).
+It’s not inclusive of the end.</p></li>
+<li><p><strong>(</strong><strong>float o</strong> (<em>amplitude</em>) – the amplitudes of the stimuli.</p></li>
+<li><p><strong>amplitude</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>sigma</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>dtype</strong> (<em>numpy.dtype</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>sigma</strong> – variance of zero-mean Gaussian noise added to the waveform.</p></li>
+<li><p><strong>dtype</strong> – data type of the return array</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>generate stimulus of shape (NTime, NTrial)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-olftrans">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-olftrans" title="Permalink to this headline">¶</a></h2>
+<p>Top-level package for OlfTrans.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="olftrans.cpu.html" class="btn btn-neutral float-right" title="olftrans.cpu package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="olftrans" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

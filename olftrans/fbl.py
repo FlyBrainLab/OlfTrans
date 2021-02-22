@@ -26,24 +26,28 @@ from warnings import warn
 @dataclass
 class Config:
     """Configuration for FlyBrainLab-compatible Module
-
-    Attributes:
-        NR: Number of Receptor Types
-        NO: Number of OSNs per Receptor Type
-        affs: Affinity Values
-        drs: Dissociation Rates
-        receptor_names: Name of receptors of length NR
-        resting: Resting OSN Spike Rates [Hz]
-        sigma: NoisyConnorStevens Noise Standard Deviation
     """
 
     NR: int = field(init=False)
+    """Number of Receptor Types"""
+
     NO: tp.Iterable[int]
+    """Number of OSNs per Receptor Type"""
+
     affs: tp.Iterable[float]
+    """Affinity Values"""
+
     drs: tp.Iterable[float] = None
+    """Dissociation Rates"""
+
     receptor_names: tp.Iterable[str] = None
+    """Name of receptors of length NR"""
+
     resting: float = None
+    """Resting OSN Spike Rates [Hz]"""
+
     sigma: float = None
+    """NoisyConnorStevens Noise Standard Deviation"""
 
     def __post_init__(self):
         self.affs = np.asarray(self.affs)
@@ -83,27 +87,30 @@ class Config:
 
 @dataclass
 class FBL:
-    """FlyBrainLab-compatible Module
-
-    Attributes:
-        graph: networkx graph describing the executable circuit
-        inputs: input variable and uids dictionary
-        outputs: input variable and uids dictionary
-        extra_comps: list of neurodriver extra components
-        config: configuration
-        affinities: a pandas dataframe with affinities saved as reference
-            - index: odorants
-            - columns: receptor names
-    """
+    """FlyBrainLab-compatible Module"""
 
     graph: nx.MultiDiGraph
+    """networkx graph describing the executable circuit"""
+
     inputs: dict
+    """input variable and uids dictionary"""
+
     outputs: dict
+    """output variable and uids dictionary"""
+
     extra_comps: tp.List[NDComponent] = field(
         default_factory=lambda: [ndcomp.OTP, ndcomp.NoisyConnorStevens]
     )
+    """list of neurodriver extra components"""
+
     config: Config = None
+    """configuration"""
+
     affinities: pd.DataFrame = field(default=None, init=None)
+    """a pandas dataframe with affinities saved as reference
+        - index: odorants
+        - columns: receptor names
+    """
 
     @classmethod
     def create_from_config(cls, cfg: Config):

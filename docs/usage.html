@@ -1,0 +1,1026 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Usage &mdash; OlfTrans 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="olftrans" href="modules.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OlfTrans
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">OlfTrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#olfactory-transduction-library">Olfactory Transduction Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#estimating-binding-dissociation-rates-from-data">1. Estimating Binding &amp; Dissociation Rates from Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assumptions-and-data-pre-processing">Assumptions and Data Pre-processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-resting-spike-rate-of-bsg">2. Computing Resting Spike Rate of BSG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-bsg-f-i-curve">3. Computing BSG F-I Curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-peak-and-steady-state-response-of-otp">4. Computing Peak and Steady State Response of OTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#infer-mapping-from-affinity-steady-state-spike-rate">4.1 Infer Mapping from Affinity -&gt; Steady-State Spike-Rate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-peak-and-steady-state-response-of-otp-bsg-cascade">5. Computing Peak and Steady State Response of OTP-BSG Cascade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-other-fbl-packages">6. Working with Other FBL Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">olftrans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OlfTrans</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="olfactory-transduction-library">
+<h2>Olfactory Transduction Library<a class="headerlink" href="#olfactory-transduction-library" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we demonstrate the various ways that the <code class="docutils literal notranslate"><span class="pre">Olftrans</span></code>
+package is to be consumed by end-users.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="estimating-binding-dissociation-rates-from-data">
+<h2>1. Estimating Binding &amp; Dissociation Rates from Data<a class="headerlink" href="#estimating-binding-dissociation-rates-from-data" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we show an example of estimating binding and
+dissociation rates from spike rate data. The data that we will use is
+from Hallem &amp; Carlson 2006. The data shows the steady-state spike rates
+of odorant-receptor pairs under a step concentration input of 100 ppm.</p>
+<p>The processed data is available in the <code class="docutils literal notranslate"><span class="pre">Olftrans</span></code> package as
+<code class="docutils literal notranslate"><span class="pre">olftrans.data.HallemCarlson.DATA</span></code>.</p>
+<div class="section" id="assumptions-and-data-pre-processing">
+<h3>Assumptions and Data Pre-processing<a class="headerlink" href="#assumptions-and-data-pre-processing" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Steady-State Response Assumption:</p>
+<ul>
+<li><p>Note that from the original 2006 publication’s <em>Experimental
+Procedure</em> Section: &gt; Responses were quantified by subtracting the
+number of impulses in 500 ms of unstimulated activity from the
+number of impulses in the 500 ms following odorant stimulation,
+unless otherwise indicated.</p>
+<p>We assume that 500 ms is sufficient for the response to reach
+steady-state.</p>
+</li>
+</ul>
+</li>
+<li><p>Response level calculation:</p>
+<ul>
+<li><p>Note that from the original 2006 publication’s <em>Figure 1 Caption</em>:
+&gt; Responses of each receptor to the diluent were subtracted from
+each odorant response</p>
+<p>To take into account the spontaneous firing rate of OSNs
+expressing each receptor type, we add the spontaneous firing rate
+to the reported spike rate by Hallem &amp; Carlson. Note that this is
+consistent with the procedure in <em>Stevens 2016 PNAS</em></p>
+</li>
+</ul>
+</li>
+<li><p>Negative Spike Rate:</p>
+<ul class="simple">
+<li><p>Even after adding the spontaneous firing rates, some of the firing
+rates are still negative. As such, we recify the resulting spike
+rate to be non-negative. Note that this is consistent with the
+procedure in <em>Stevens 2016 PNAS</em></p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">olftrans</span>
+<span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">HallemCarlson</span><span class="o">.</span><span class="n">DATA</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>2a</p></th>
+<th class="head"><p>7a</p></th>
+<th class="head"><p>9a</p></th>
+<th class="head"><p>10a</p></th>
+<th class="head"><p>19a</p></th>
+<th class="head"><p>22a</p></th>
+<th class="head"><p>23a</p></th>
+<th class="head"><p>33b</p></th>
+<th class="head"><p>35a</p></th>
+<th class="head"><p>43a</p></th>
+<th class="head"><p>43b</p></th>
+<th class="head"><p>47a</p></th>
+<th class="head"><p>47b</p></th>
+<th class="head"><p>49b</p></th>
+<th class="head"><p>59b</p></th>
+<th class="head"><p>65a</p></th>
+<th class="head"><p>67a</p></th>
+<th class="head"><p>67c</p></th>
+<th class="head"><p>82a</p></th>
+<th class="head"><p>85a</p></th>
+<th class="head"><p>85b</p></th>
+<th class="head"><p>85f</p></th>
+<th class="head"><p>88a</p></th>
+<th class="head"><p>98a</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ammonium hydroxide</p></td>
+<td><p>11</p></td>
+<td><p>0</p></td>
+<td><p>35</p></td>
+<td><p>24</p></td>
+<td><p>30</p></td>
+<td><p>17</p></td>
+<td><p>7</p></td>
+<td><p>16</p></td>
+<td><p>21</p></td>
+<td><p>20</p></td>
+<td><p>5</p></td>
+<td><p>17</p></td>
+<td><p>39</p></td>
+<td><p>12</p></td>
+<td><p>7</p></td>
+<td><p>21</p></td>
+<td><p>27</p></td>
+<td><p>16</p></td>
+<td><p>18</p></td>
+<td><p>8</p></td>
+<td><p>28</p></td>
+<td><p>24</p></td>
+<td><p>26</p></td>
+<td><p>36</p></td>
+</tr>
+<tr class="row-odd"><td><p>putrescine</p></td>
+<td><p>14</p></td>
+<td><p>0</p></td>
+<td><p>29</p></td>
+<td><p>0</p></td>
+<td><p>20</p></td>
+<td><p>16</p></td>
+<td><p>7</p></td>
+<td><p>21</p></td>
+<td><p>17</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+<td><p>22</p></td>
+<td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+<td><p>7</p></td>
+<td><p>12</p></td>
+<td><p>12</p></td>
+<td><p>1</p></td>
+<td><p>37</p></td>
+<td><p>15</p></td>
+<td><p>20</p></td>
+<td><p>29</p></td>
+</tr>
+<tr class="row-even"><td><p>cadaverine</p></td>
+<td><p>9</p></td>
+<td><p>0</p></td>
+<td><p>24</p></td>
+<td><p>0</p></td>
+<td><p>24</p></td>
+<td><p>17</p></td>
+<td><p>2</p></td>
+<td><p>18</p></td>
+<td><p>29</p></td>
+<td><p>11</p></td>
+<td><p>14</p></td>
+<td><p>0</p></td>
+<td><p>31</p></td>
+<td><p>6</p></td>
+<td><p>9</p></td>
+<td><p>17</p></td>
+<td><p>3</p></td>
+<td><p>20</p></td>
+<td><p>14</p></td>
+<td><p>3</p></td>
+<td><p>42</p></td>
+<td><p>23</p></td>
+<td><p>26</p></td>
+<td><p>33</p></td>
+</tr>
+<tr class="row-odd"><td><p>g-butyrolactone</p></td>
+<td><p>17</p></td>
+<td><p>51</p></td>
+<td><p>56</p></td>
+<td><p>8</p></td>
+<td><p>22</p></td>
+<td><p>47</p></td>
+<td><p>13</p></td>
+<td><p>32</p></td>
+<td><p>98</p></td>
+<td><p>9</p></td>
+<td><p>21</p></td>
+<td><p>7</p></td>
+<td><p>56</p></td>
+<td><p>7</p></td>
+<td><p>18</p></td>
+<td><p>24</p></td>
+<td><p>136</p></td>
+<td><p>26</p></td>
+<td><p>9</p></td>
+<td><p>6</p></td>
+<td><p>60</p></td>
+<td><p>30</p></td>
+<td><p>28</p></td>
+<td><p>41</p></td>
+</tr>
+<tr class="row-even"><td><p>g-hexalactone</p></td>
+<td><p>23</p></td>
+<td><p>0</p></td>
+<td><p>121</p></td>
+<td><p>32</p></td>
+<td><p>27</p></td>
+<td><p>144</p></td>
+<td><p>21</p></td>
+<td><p>50</p></td>
+<td><p>188</p></td>
+<td><p>29</p></td>
+<td><p>32</p></td>
+<td><p>25</p></td>
+<td><p>11</p></td>
+<td><p>7</p></td>
+<td><p>20</p></td>
+<td><p>36</p></td>
+<td><p>58</p></td>
+<td><p>46</p></td>
+<td><p>21</p></td>
+<td><p>11</p></td>
+<td><p>66</p></td>
+<td><p>61</p></td>
+<td><p>29</p></td>
+<td><p>36</p></td>
+</tr>
+</tbody>
+</table>
+<p>We can then calculate the affinity values of the odorant-receptor pairs
+based on the data.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spike_rates</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">HallemCarlson</span><span class="o">.</span><span class="n">DATA</span><span class="p">[</span><span class="o">~</span><span class="n">data</span><span class="o">.</span><span class="n">HallemCarlson</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">hallem_carlson_est</span> <span class="o">=</span> <span class="n">olftrans</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">amplitude</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span> <span class="n">resting_spike_rate</span><span class="o">=</span><span class="mf">8.</span><span class="p">,</span> <span class="n">steady_state_spike_rate</span><span class="o">=</span><span class="n">spike_rates</span><span class="p">,</span> <span class="n">decay_time</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The estimation result <code class="docutils literal notranslate"><span class="pre">hallem_carlson_est</span></code> is a <code class="docutils literal notranslate"><span class="pre">dataclass</span></code> that
+contains estimated affinity values in <code class="docutils literal notranslate"><span class="pre">hallem_carlson_est.affs</span></code>
+attribute. We can save the estimated affinity values into another
+dataframe as follows.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hallem_carlson_affs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">HallemCarlson</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">hallem_carlson_affs</span><span class="p">[</span><span class="o">~</span><span class="n">hallem_carlson_affs</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span> <span class="o">=</span> <span class="n">hallem_carlson_est</span><span class="o">.</span><span class="n">affs</span>
+<span class="n">hallem_carlson_affs</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>2a</p></th>
+<th class="head"><p>7a</p></th>
+<th class="head"><p>9a</p></th>
+<th class="head"><p>10a</p></th>
+<th class="head"><p>19a</p></th>
+<th class="head"><p>22a</p></th>
+<th class="head"><p>23a</p></th>
+<th class="head"><p>33b</p></th>
+<th class="head"><p>35a</p></th>
+<th class="head"><p>43a</p></th>
+<th class="head"><p>43b</p></th>
+<th class="head"><p>47a</p></th>
+<th class="head"><p>47b</p></th>
+<th class="head"><p>49b</p></th>
+<th class="head"><p>59b</p></th>
+<th class="head"><p>65a</p></th>
+<th class="head"><p>67a</p></th>
+<th class="head"><p>67c</p></th>
+<th class="head"><p>82a</p></th>
+<th class="head"><p>85a</p></th>
+<th class="head"><p>85b</p></th>
+<th class="head"><p>85f</p></th>
+<th class="head"><p>88a</p></th>
+<th class="head"><p>98a</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ammonium hydroxide</p></td>
+<td><p>0.000115672</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00209477</p></td>
+<td><p>0.000976631</p></td>
+<td><p>0.00150285</p></td>
+<td><p>0.000521254</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000443275</p></td>
+<td><p>0.000801621</p></td>
+<td><p>0.000746741</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000521254</p></td>
+<td><p>0.0025163</p></td>
+<td><p>0.000176793</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000801621</p></td>
+<td><p>0.00120942</p></td>
+<td><p>0.000443275</p></td>
+<td><p>0.000603536</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00130248</p></td>
+<td><p>0.000976631</p></td>
+<td><p>0.0011201</p></td>
+<td><p>0.00219478</p></td>
+</tr>
+<tr class="row-odd"><td><p>putrescine</p></td>
+<td><p>0.000301777</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00139946</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000746741</p></td>
+<td><p>0.000443275</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000801621</p></td>
+<td><p>0.000521254</p></td>
+<td><p>1e-08</p></td>
+<td><p>1e-08</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000858196</p></td>
+<td><p>1e-08</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000443275</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000176793</p></td>
+<td><p>0.000176793</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00229827</p></td>
+<td><p>0.000370178</p></td>
+<td><p>0.000746741</p></td>
+<td><p>0.00139946</p></td>
+</tr>
+<tr class="row-even"><td><p>cadaverine</p></td>
+<td><p>1.07163e-05</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000976631</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000976631</p></td>
+<td><p>0.000521254</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000603536</p></td>
+<td><p>0.00139946</p></td>
+<td><p>0.000115672</p></td>
+<td><p>0.000301777</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00161874</p></td>
+<td><p>1e-08</p></td>
+<td><p>1.07163e-05</p></td>
+<td><p>0.000521254</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000746741</p></td>
+<td><p>0.000301777</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00288659</p></td>
+<td><p>0.000916515</p></td>
+<td><p>0.0011201</p></td>
+<td><p>0.00186734</p></td>
+</tr>
+<tr class="row-odd"><td><p>g-butyrolactone</p></td>
+<td><p>0.000521254</p></td>
+<td><p>0.00447951</p></td>
+<td><p>0.00577908</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000858196</p></td>
+<td><p>0.00365108</p></td>
+<td><p>0.000237298</p></td>
+<td><p>0.00174012</p></td>
+<td><p>10</p></td>
+<td><p>1.07163e-05</p></td>
+<td><p>0.000801621</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00577908</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000603536</p></td>
+<td><p>0.000976631</p></td>
+<td><p>10</p></td>
+<td><p>0.0011201</p></td>
+<td><p>1.07163e-05</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.00675985</p></td>
+<td><p>0.00150285</p></td>
+<td><p>0.00130248</p></td>
+<td><p>0.00275671</p></td>
+</tr>
+<tr class="row-even"><td><p>g-hexalactone</p></td>
+<td><p>0.000916515</p></td>
+<td><p>1e-08</p></td>
+<td><p>10</p></td>
+<td><p>0.00174012</p></td>
+<td><p>0.00120942</p></td>
+<td><p>10</p></td>
+<td><p>0.000801621</p></td>
+<td><p>0.00425483</p></td>
+<td><p>10</p></td>
+<td><p>0.00139946</p></td>
+<td><p>0.00174012</p></td>
+<td><p>0.0010386</p></td>
+<td><p>0.000115672</p></td>
+<td><p>1e-08</p></td>
+<td><p>0.000746741</p></td>
+<td><p>0.00219478</p></td>
+<td><p>0.00624765</p></td>
+<td><p>0.00346843</p></td>
+<td><p>0.000801621</p></td>
+<td><p>0.000115672</p></td>
+<td><p>0.00925384</p></td>
+<td><p>0.00703414</p></td>
+<td><p>0.00139946</p></td>
+<td><p>0.00219478</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that since peak response was not reported in Hallem&amp;Carlson 2006,
+we cannot estimate dissociation rate directly. However, the dissociation
+rate is the reciprocal of the decay time for the OSN activity to settle
+from steady-state response to resting response after odorant offset.</p>
+<p>Assuming that the <code class="docutils literal notranslate"><span class="pre">decay_time</span></code> is 100 ms, the dissociation rate should
+be <span class="math notranslate nohighlight">\(10 s^{-1}\)</span>, which is the value given in
+<code class="docutils literal notranslate"><span class="pre">hallem_carlson_est.dr</span></code>.</p>
+</div>
+</div>
+<div class="section" id="computing-resting-spike-rate-of-bsg">
+<h2>2. Computing Resting Spike Rate of BSG<a class="headerlink" href="#computing-resting-spike-rate-of-bsg" title="Permalink to this headline">¶</a></h2>
+<p>OSNs are spontaneously firing neurons whose spiking mechanism is modeled
+by a ConnorStevens neuron model with noisy state values. The state
+parameters are perturbed by a brownian motion whose standard deviation
+value <code class="docutils literal notranslate"><span class="pre">sigma</span></code> controls the resting spike rate of the neuron.</p>
+<p>Given the Connor-Stevens neuron model, we can fix all other parameters
+except for <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and vary <code class="docutils literal notranslate"><span class="pre">sigma</span></code> to obtain the resting spike
+rate. This <code class="docutils literal notranslate"><span class="pre">sigma</span></code>-spike rate relationship can then be used to
+estimate the <code class="docutils literal notranslate"><span class="pre">sigma</span></code> parameter given resting spike rates.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">olftrans.neurodriver</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">nd</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">sigmas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.007</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">rest_fs</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">compute_resting</span><span class="p">(</span>
+    <span class="n">nd</span><span class="o">.</span><span class="n">NoisyConnorStevens</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="n">sigmas</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">smoothen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">savgol_window</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">savgol_order</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Resting Spike Rate NoisyConnorStevens - Against sigma: 100%|██████████| 200000/200000 [00:26&lt;00:00, 7635.25it/s]
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target_resting_rate</span> <span class="o">=</span> <span class="mf">8.</span> <span class="c1"># Hz</span>
+<span class="n">target_sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">target_resting_rate</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">rest_fs</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="n">sigmas</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/output_14_1.png" src="_images/output_14_1.png" />
+</div>
+<div class="section" id="computing-bsg-f-i-curve">
+<h2>3. Computing BSG F-I Curve<a class="headerlink" href="#computing-bsg-f-i-curve" title="Permalink to this headline">¶</a></h2>
+<p>Once a <code class="docutils literal notranslate"><span class="pre">sigma</span></code> value is found for a BSG neuron, we can then find the
+Frequency-Current curve of a given neuron model. Obtaining the F-I curve
+will help us estimate the OTP output current from the OSN’s output spike
+rate.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">olftrans.neurodriver</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">nd</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">Is</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.0024413599558694506</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">compute_fi</span><span class="p">(</span>
+    <span class="n">nd</span><span class="o">.</span><span class="n">NoisyConnorStevens</span><span class="p">,</span> <span class="n">Is</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">neuron_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;sigma&#39;</span><span class="p">:</span><span class="n">sigma</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F-I NoisyConnorStevens: 100%|██████████| 300000/300000 [00:44&lt;00:00, 6670.95it/s]
+</pre></div>
+</div>
+<img alt="_images/output_18_0.png" src="_images/output_18_0.png" />
+</div>
+<div class="section" id="computing-peak-and-steady-state-response-of-otp">
+<h2>4. Computing Peak and Steady State Response of OTP<a class="headerlink" href="#computing-peak-and-steady-state-response-of-otp" title="Permalink to this headline">¶</a></h2>
+<p>Once the F-I curve is found, it can be used to estimate the output
+current of OTP model to give rise to the observed spike rate at the
+output of OSN Axon-Hillock.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">olftrans.neurodriver</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">nd</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">brs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">drs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">amplitude</span> <span class="o">=</span> <span class="mf">100.</span>
+<span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">I_ss</span><span class="p">,</span><span class="n">I_peak</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">compute_peak_ss_I</span><span class="p">(</span><span class="n">brs</span><span class="p">,</span> <span class="n">drs</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mf">4.</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>OTP Currents: 100%|██████████| 400000/400000 [01:03&lt;00:00, 6272.69it/s]
+</pre></div>
+</div>
+<img alt="_images/output_21_0.png" src="_images/output_21_0.png" />
+<div class="section" id="infer-mapping-from-affinity-steady-state-spike-rate">
+<h3>4.1 Infer Mapping from Affinity -&gt; Steady-State Spike-Rate<a class="headerlink" href="#infer-mapping-from-affinity-steady-state-spike-rate" title="Permalink to this headline">¶</a></h3>
+<p>From steady-state spike rate, the affinity value can be estimated either
+by data interpolation <em>or</em> parametrically by first fitting a function to
+the spike-rate vs. affinity relationship.</p>
+<p>Note that this can only be done robustly for the steady-state
+vs. affinity relationship (and not the other relationships above)
+because data reveals that such relationship strongly resembles a hill
+function.</p>
+<p>As such, we use Differential Evolution to first estimate the parameter
+of a hill function that maps affinity value to steady-state output
+current of OTP and use the inverse of this function to estimate the
+affinity value from a given steady-state OTP current.</p>
+<p><strong>Note</strong>: Because the steady-state current of OTP model follows a hill
+function shape, it is <em>nonnegative</em> and <em>saturates</em> at a finite value.
+For steady-state currents outside of this range, the input affinity
+value cannote be estimated. As such, we clip the steady-state current
+value to be between the supported range beforing estimating its
+associated affinity value.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">differential_evolution</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">affs_intp</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">I_ss_flat</span> <span class="o">=</span> <span class="n">I_ss</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">affs</span><span class="p">)</span>
+<span class="n">ss_intp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">affs_intp</span><span class="p">,</span> <span class="n">affs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">I_ss_flat</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+<span class="n">hill_f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">:</span> <span class="n">b</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">aff</span><span class="p">,</span> <span class="n">ss</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">hill_f</span><span class="p">(</span><span class="n">aff</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pred</span><span class="o">-</span><span class="n">ss</span><span class="p">)</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)]</span>
+<span class="n">diffeq_ss</span> <span class="o">=</span> <span class="n">differential_evolution</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">affs_intp</span><span class="p">,</span> <span class="n">ss_intp</span><span class="p">),</span> <span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inverse_hill_f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">x_ref</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">)),</span> <span class="mf">1.</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">y</span><span class="o">&lt;</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_ref</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">res</span><span class="p">[(</span><span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_ref</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+<img alt="_images/output_26_0.png" src="_images/output_26_0.png" />
+</div>
+</div>
+<div class="section" id="computing-peak-and-steady-state-response-of-otp-bsg-cascade">
+<h2>5. Computing Peak and Steady State Response of OTP-BSG Cascade<a class="headerlink" href="#computing-peak-and-steady-state-response-of-otp-bsg-cascade" title="Permalink to this headline">¶</a></h2>
+<p>Instead of going from <em>Spike Rates -&gt; Current -&gt; Affinity</em>, we can
+also go directly from <em>Spike Rate -&gt; Affininty</em>. To do this, we will
+need to estimate the spike rate of the OTP-BSG cascade under step input
+waveform.</p>
+<p><strong>Note</strong>: because of the complexity of this estimation task, the code
+below takes significantly longer to run.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">olftrans.neurodriver</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">nd</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">8e-6</span>
+<span class="n">brs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">drs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">amplitude</span> <span class="o">=</span> <span class="mf">100.</span>
+<span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">I_ss</span><span class="p">,</span><span class="n">I_peak</span><span class="p">,</span><span class="n">f_ss</span><span class="p">,</span><span class="n">f_peak</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">compute_peak_ss_spike_rate</span><span class="p">(</span><span class="n">brs</span><span class="p">,</span> <span class="n">drs</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">dur</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Computing</span> <span class="n">Peak</span> <span class="ow">and</span> <span class="n">Steady</span> <span class="n">State</span> <span class="n">Currents</span>
+<span class="n">Computing</span> <span class="n">Peak</span> <span class="ow">and</span> <span class="n">Steady</span> <span class="n">State</span> <span class="n">Spike</span> <span class="n">Rates</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Computing PSTH...: 100%|██████████| 2500/2500 [15:53&lt;00:00,  2.62it/s]
+</pre></div>
+</div>
+<img alt="_images/peak_ss_spike_rates.png" src="_images/peak_ss_spike_rates.png" />
+</div>
+<div class="section" id="working-with-other-fbl-packages">
+<h2>6. Working with Other FBL Packages<a class="headerlink" href="#working-with-other-fbl-packages" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">OlfTrans</span></code> is intended to be used in conjuction with other FBL
+packages. To make <code class="docutils literal notranslate"><span class="pre">OlfTrans</span></code> compatible with other executable
+circuits, we define an <code class="docutils literal notranslate"><span class="pre">olftrans.fbl</span></code> module that exposes a class
+<code class="docutils literal notranslate"><span class="pre">olftrans.fbl.FBL</span></code> that has the following attributes (among others,
+see documentation for further details):</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">graph</span></code>: a <code class="docutils literal notranslate"><span class="pre">networkx.MultiDiGraph</span></code> instance that defines the
+executable circuit comprised of OTP-BSG cascades</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inputs</span></code>: a dictionary of form <code class="docutils literal notranslate"><span class="pre">{var:</span> <span class="pre">uids}</span></code> that define the
+input variables and input nodes of the graph</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputs</span></code>: a dictionary of form <code class="docutils literal notranslate"><span class="pre">{var:</span> <span class="pre">uids}</span></code> that define the
+output variables and output nodes of the graph</p></li>
+</ol>
+<p>Additionally, we provide 2 pre-computed <code class="docutils literal notranslate"><span class="pre">FBL</span></code> instances using
+<em>Drosophila</em> larva and adult data respectively:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">olftrans.fbl.LARVA</span></code>: <code class="docutils literal notranslate"><span class="pre">FBL</span></code> instance using data from <em>Kreher et
+al. 2005</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">olftrans.fbl.Adult</span></code>: <code class="docutils literal notranslate"><span class="pre">FBL</span></code> instance using data from <em>Hallem &amp;
+Carlson. 2006</em></p></li>
+</ol>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">olftrans</span> <span class="kn">import</span> <span class="n">fbl</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbl</span><span class="o">.</span><span class="n">LARVA</span><span class="o">.</span><span class="n">config</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Config</span><span class="p">(</span><span class="n">NR</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">NO</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">affs</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span>
+       <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]),</span> <span class="n">drs</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span>
+       <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">]),</span> <span class="n">receptor_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Or0&#39;</span><span class="p">,</span> <span class="s1">&#39;Or1&#39;</span><span class="p">,</span> <span class="s1">&#39;Or2&#39;</span><span class="p">,</span> <span class="s1">&#39;Or3&#39;</span><span class="p">,</span> <span class="s1">&#39;Or4&#39;</span><span class="p">,</span> <span class="s1">&#39;Or5&#39;</span><span class="p">,</span> <span class="s1">&#39;Or6&#39;</span><span class="p">,</span> <span class="s1">&#39;Or7&#39;</span><span class="p">,</span> <span class="s1">&#39;Or8&#39;</span><span class="p">,</span> <span class="s1">&#39;Or9&#39;</span><span class="p">,</span> <span class="s1">&#39;Or10&#39;</span><span class="p">,</span> <span class="s1">&#39;Or11&#39;</span><span class="p">,</span> <span class="s1">&#39;Or12&#39;</span><span class="p">,</span> <span class="s1">&#39;Or13&#39;</span><span class="p">,</span> <span class="s1">&#39;Or14&#39;</span><span class="p">,</span> <span class="s1">&#39;Or15&#39;</span><span class="p">,</span> <span class="s1">&#39;Or16&#39;</span><span class="p">,</span> <span class="s1">&#39;Or17&#39;</span><span class="p">,</span> <span class="s1">&#39;Or18&#39;</span><span class="p">,</span> <span class="s1">&#39;Or19&#39;</span><span class="p">,</span> <span class="s1">&#39;Or20&#39;</span><span class="p">],</span> <span class="n">resting</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.002442364106413095</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbl</span><span class="o">.</span><span class="n">LARVA</span><span class="o">.</span><span class="n">graph</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">multidigraph</span><span class="o">.</span><span class="n">MultiDiGraph</span> <span class="n">at</span> <span class="mh">0x7f6241288828</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbl</span><span class="o">.</span><span class="n">LARVA</span><span class="o">.</span><span class="n">affinities</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>30a</p></th>
+<th class="head"><p>42a</p></th>
+<th class="head"><p>45a</p></th>
+<th class="head"><p>45b</p></th>
+<th class="head"><p>49a</p></th>
+<th class="head"><p>69a</p></th>
+<th class="head"><p>67b</p></th>
+<th class="head"><p>74a</p></th>
+<th class="head"><p>85c</p></th>
+<th class="head"><p>94a</p></th>
+<th class="head"><p>94b</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ethyl acetate</p></td>
+<td><p>0.000702006</p></td>
+<td><p>10</p></td>
+<td><p>0.0062682</p></td>
+<td><p>0.000902033</p></td>
+<td><p>0.000902033</p></td>
+<td><p>0.00555246</p></td>
+<td><p>0.0020684</p></td>
+<td><p>0.00303725</p></td>
+<td><p>0.00598167</p></td>
+<td><p>0.00120451</p></td>
+<td><p>0.00131617</p></td>
+</tr>
+<tr class="row-odd"><td><p>pentyl acetate</p></td>
+<td><p>0.000702006</p></td>
+<td><p>0.0215691</p></td>
+<td><p>10</p></td>
+<td><p>0.00143349</p></td>
+<td><p>0.00338442</p></td>
+<td><p>0.00218748</p></td>
+<td><p>10</p></td>
+<td><p>0.00570972</p></td>
+<td><p>10</p></td>
+<td><p>0.00312099</p></td>
+<td><p>0.00382387</p></td>
+</tr>
+<tr class="row-even"><td><p>ethyl butyrate</p></td>
+<td><p>0.000502663</p></td>
+<td><p>10</p></td>
+<td><p>0.00951996</p></td>
+<td><p>0.000733843</p></td>
+<td><p>0.00131617</p></td>
+<td><p>0.00149608</p></td>
+<td><p>0.000799287</p></td>
+<td><p>0.0032945</p></td>
+<td><p>0.0215691</p></td>
+<td><p>0.00104804</p></td>
+<td><p>0.00178211</p></td>
+</tr>
+<tr class="row-odd"><td><p>methyl salicylate</p></td>
+<td><p>0.00218748</p></td>
+<td><p>0.00521272</p></td>
+<td><p>0.00097371</p></td>
+<td><p>0.0001385</p></td>
+<td><p>0.000248212</p></td>
+<td><p>0.00120451</p></td>
+<td><p>0.000368073</p></td>
+<td><p>0.00149608</p></td>
+<td><p>0.0027974</p></td>
+<td><p>0.0020684</p></td>
+<td><p>0.00312099</p></td>
+</tr>
+<tr class="row-even"><td><p>1-hexonol</p></td>
+<td><p>0.000902033</p></td>
+<td><p>10</p></td>
+<td><p>10</p></td>
+<td><p>0.00257565</p></td>
+<td><p>0.00406467</p></td>
+<td><p>0.00120451</p></td>
+<td><p>10</p></td>
+<td><p>10</p></td>
+<td><p>10</p></td>
+<td><p>0.00474388</p></td>
+<td><p>0.00320672</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbl</span><span class="o">.</span><span class="n">LARVA</span><span class="o">.</span><span class="n">inputs</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;conc&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="s1">&#39;OSN-OTP-Or0-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or1-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or2-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or3-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or4-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or5-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or6-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or7-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or8-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or9-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or10-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or11-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or12-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or13-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or14-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or15-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or16-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or17-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-OTP-Or18-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or19-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-OTP-Or20-O0&#39;</span><span class="p">],</span>
+       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;U15&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbl</span><span class="o">.</span><span class="n">LARVA</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="s1">&#39;OSN-BSG-Or0-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or1-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or2-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or3-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or4-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or5-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or6-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or7-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or8-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or9-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or10-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or11-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or12-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or13-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or14-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or15-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or16-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or17-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or18-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or19-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or20-O0&#39;</span><span class="p">],</span>
+       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;U15&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;spike_state&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="s1">&#39;OSN-BSG-Or0-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or1-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or2-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or3-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or4-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or5-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or6-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or7-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or8-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or9-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or10-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or11-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or12-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or13-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or14-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or15-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or16-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or17-O0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OSN-BSG-Or18-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or19-O0&#39;</span><span class="p">,</span> <span class="s1">&#39;OSN-BSG-Or20-O0&#39;</span><span class="p">],</span>
+       <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&lt;U15&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-right" title="olftrans" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tingkai Liu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
