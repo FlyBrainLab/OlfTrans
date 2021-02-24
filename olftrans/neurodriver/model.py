@@ -1,14 +1,14 @@
 """NeuroDriver Models and Utilities
 
 Examples:
-    1. Compute F-I 
+    1. Compute F-I
     >>> from olftrans.neurodriver import model
     >>> import numpy as np
     >>> dt = 5e-6
     >>> repeat = 50
     >>> Is = np.linspace(0,150,150)
     >>> _, fs = model.compute_fi(model.NoisyConnorStevens, Is, dt=dt, repeat=repeat, save=True)
-    
+
     2. Compute Resting Spike Rate
     >>> from olftrans.neurodriver import model
     >>> import numpy as np
@@ -70,7 +70,7 @@ class OTP(Model):
         kappa=8841.0,
         p=1.0,
         c=0.06546,
-        Imax=62.13,
+        Imax=150.0,
     )
     _ndcomp = NDComponents.OTP
 

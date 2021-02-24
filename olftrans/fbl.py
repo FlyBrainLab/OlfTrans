@@ -343,6 +343,8 @@ larva_cfg = Config(
 )
 LARVA = FBL.create_from_config(larva_cfg)
 LARVA.affinities = load_larva_affinities(larva_cfg)
+LARVA.affinities[LARVA.affinities<1e-5] = 1e-5
+LARVA.affinities[LARVA.affinities>1.] = 1.
 
 adult_cfg = Config(
     affs=np.zeros((51,)),
@@ -352,3 +354,6 @@ adult_cfg = Config(
 )
 ADULT = FBL.create_from_config(adult_cfg)
 ADULT.affinities = load_adult_affinities(adult_cfg)
+ADULT.affinities[ADULT.affinities<1e-5] = 1e-5
+ADULT.affinities[ADULT.affinities>1.] = 1.
+
