@@ -108,3 +108,4 @@ ENV/
 
 notebooks/**/*.npz
 data/npz_cache/*
+docs/.doctrees/
