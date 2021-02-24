@@ -32,7 +32,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -103,6 +102,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="olftrans.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.errors">olftrans.errors module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.fbl">olftrans.fbl module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.olftrans">olftrans.olftrans module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="olftrans.html#module-olftrans.plot">olftrans.plot module</a></li>
@@ -196,46 +196,46 @@
 <span id="olftrans-neurodriver-ndcomponents-noisyconnorstevens-module"></span><h2>olftrans.neurodriver.NDComponents.NoisyConnorStevens module<a class="headerlink" href="#module-olftrans.neurodriver.NDComponents.NoisyConnorStevens" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens">
-<em class="property">class </em><code class="sig-prename descclassname">olftrans.neurodriver.NDComponents.NoisyConnorStevens.</code><code class="sig-name descname">NoisyConnorStevens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params_dict</span></em>, <em class="sig-param"><span class="n">access_buffers</span></em>, <em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">LPU_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">debug</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">cuda_verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.neurodriver.NDComponents.NoisyConnorStevens.</span></code><code class="sig-name descname"><span class="pre">NoisyConnorStevens</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.accesses">
-<code class="sig-name descname">accesses</code><em class="property"> = ['I']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.accesses" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['I']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.accesses" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_func">
-<code class="sig-name descname">get_update_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dtypes</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.get_update_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_func" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_func" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_template">
-<code class="sig-name descname">get_update_template</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">float_type</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.get_update_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_update_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.get_update_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.get_update_template" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.internals">
-<code class="sig-name descname">internals</code><em class="property"> = {'a': 1.0, 'b': 1.0, 'h': 1.0, 'm': 0.0, 'n': 0.0, 'refractory': 0.0, 'v1': -60.0, 'v2': -60.0}</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.internals" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'a':</span> <span class="pre">1.0,</span> <span class="pre">'b':</span> <span class="pre">1.0,</span> <span class="pre">'h':</span> <span class="pre">1.0,</span> <span class="pre">'m':</span> <span class="pre">0.0,</span> <span class="pre">'n':</span> <span class="pre">0.0,</span> <span class="pre">'refractory':</span> <span class="pre">0.0,</span> <span class="pre">'v1':</span> <span class="pre">-60.0,</span> <span class="pre">'v2':</span> <span class="pre">-60.0}</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.internals" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.maximum_dt_allowed">
-<code class="sig-name descname">maximum_dt_allowed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.maximum_dt_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.params">
-<code class="sig-name descname">params</code><em class="property"> = ['ms', 'ns', 'hs', 'gNa', 'gK', 'gL', 'ga', 'ENa', 'EK', 'EL', 'Ea', 'sigma', 'refperiod']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['ms',</span> <span class="pre">'ns',</span> <span class="pre">'hs',</span> <span class="pre">'gNa',</span> <span class="pre">'gK',</span> <span class="pre">'gL',</span> <span class="pre">'ga',</span> <span class="pre">'ENa',</span> <span class="pre">'EK',</span> <span class="pre">'EL',</span> <span class="pre">'Ea',</span> <span class="pre">'sigma',</span> <span class="pre">'refperiod']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.run_step">
-<code class="sig-name descname">run_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_pointers</span></em>, <em class="sig-param"><span class="n">st</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.run_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.run_step" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/NoisyConnorStevens.html#NoisyConnorStevens.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.run_step" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.updates">
-<code class="sig-name descname">updates</code><em class="property"> = ['spike_state', 'V']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.updates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['spike_state',</span> <span class="pre">'V']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.NoisyConnorStevens.NoisyConnorStevens.updates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -245,46 +245,46 @@
 <span id="olftrans-neurodriver-ndcomponents-otp-module"></span><h2>olftrans.neurodriver.NDComponents.OTP module<a class="headerlink" href="#module-olftrans.neurodriver.NDComponents.OTP" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP">
-<em class="property">class </em><code class="sig-prename descclassname">olftrans.neurodriver.NDComponents.OTP.</code><code class="sig-name descname">OTP</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params_dict</span></em>, <em class="sig-param"><span class="n">access_buffers</span></em>, <em class="sig-param"><span class="n">dt</span></em>, <em class="sig-param"><span class="n">LPU_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">debug</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">cuda_verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">olftrans.neurodriver.NDComponents.OTP.</span></code><code class="sig-name descname"><span class="pre">OTP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_buffers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LPU_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuda_verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">neurokernel.LPU.NDComponents.NDComponent.NDComponent</span></code></p>
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.accesses">
-<code class="sig-name descname">accesses</code><em class="property"> = ['conc']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.accesses" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">accesses</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['conc']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.accesses" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.get_update_func">
-<code class="sig-name descname">get_update_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dtypes</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.get_update_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.get_update_func" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_update_func</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtypes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.get_update_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.get_update_func" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.get_update_template">
-<code class="sig-name descname">get_update_template</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">float_type</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.get_update_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.get_update_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_update_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.get_update_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.get_update_template" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.internals">
-<code class="sig-name descname">internals</code><em class="property"> = {'duh': 0.0, 'uh': 0.0, 'v': 0.0, 'x1': 0.0, 'x2': 0.0, 'x3': 0.0}</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.internals" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">internals</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'duh':</span> <span class="pre">0.0,</span> <span class="pre">'uh':</span> <span class="pre">0.0,</span> <span class="pre">'v':</span> <span class="pre">0.0,</span> <span class="pre">'x1':</span> <span class="pre">0.0,</span> <span class="pre">'x2':</span> <span class="pre">0.0,</span> <span class="pre">'x3':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.internals" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.maximum_dt_allowed">
-<code class="sig-name descname">maximum_dt_allowed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.maximum_dt_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">maximum_dt_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.maximum_dt_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.maximum_dt_allowed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.params">
-<code class="sig-name descname">params</code><em class="property"> = ['br', 'dr', 'gamma', 'a1', 'b1', 'a2', 'b2', 'a3', 'b3', 'kappa', 'p', 'c', 'Imax']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">params</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['br',</span> <span class="pre">'dr',</span> <span class="pre">'gamma',</span> <span class="pre">'a1',</span> <span class="pre">'b1',</span> <span class="pre">'a2',</span> <span class="pre">'b2',</span> <span class="pre">'a3',</span> <span class="pre">'b3',</span> <span class="pre">'kappa',</span> <span class="pre">'p',</span> <span class="pre">'c',</span> <span class="pre">'Imax']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.run_step">
-<code class="sig-name descname">run_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">update_pointers</span></em>, <em class="sig-param"><span class="n">st</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.run_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.run_step" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">run_step</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_pointers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/olftrans/neurodriver/NDComponents/OTP.html#OTP.run_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.run_step" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="olftrans.neurodriver.NDComponents.OTP.OTP.updates">
-<code class="sig-name descname">updates</code><em class="property"> = ['I']</em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.updates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">updates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['I']</span></em><a class="headerlink" href="#olftrans.neurodriver.NDComponents.OTP.OTP.updates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

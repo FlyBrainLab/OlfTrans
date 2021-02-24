@@ -136,7 +136,7 @@ estimate the ``sigma`` parameter given resting spike rates.
 .. code:: ipython3
 
     from olftrans.neurodriver import model as nd
-    
+
     dt = 1e-5
     repeat = 50
     sigmas = np.linspace(0,0.007,100)
@@ -175,13 +175,13 @@ rate.
 .. code:: ipython3
 
     from olftrans.neurodriver import model as nd
-    
+
     dt = 1e-5
     repeat = 50
     Is = np.linspace(0,150,150)
     sigma = 0.0024413599558694506
     _, fs = nd.compute_fi(
-        nd.NoisyConnorStevens, Is, dt=dt, dur=3., 
+        nd.NoisyConnorStevens, Is, dt=dt, dur=3.,
         repeat=repeat, save=True,
         neuron_params={'sigma':sigma/np.sqrt(dt)}
     )
@@ -208,7 +208,7 @@ output of OSN Axon-Hillock.
     import matplotlib.pyplot as plt
     import numpy as np
     from olftrans.neurodriver import model as nd
-    
+
     dt = 1e-5
     brs = 10**np.linspace(-2, 4, 100)
     drs = 10**np.linspace(-2, 4, 100)
@@ -296,7 +296,7 @@ below takes significantly longer to run.
     import matplotlib.pyplot as plt
     import numpy as np
     from olftrans.neurodriver import model as nd
-    
+
     dt = 8e-6
     brs = 10**np.linspace(-2, 4, 50)
     drs = 10**np.linspace(-2, 4, 50)

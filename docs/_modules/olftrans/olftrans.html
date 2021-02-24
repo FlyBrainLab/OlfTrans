@@ -32,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -184,28 +183,33 @@
 <div class="viewcode-block" id="Estimation"><a class="viewcode-back" href="../../olftrans.html#olftrans.olftrans.Estimation">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Estimation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Estimation Result</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        sigma: noise parameter of the NoisyConnorStevens neuron</span>
-<span class="sd">        steady_state_spike_rate: steady-state spike rate.</span>
-<span class="sd">            This is the part of the input to estimation procedure stored as reference</span>
-<span class="sd">        peak_state_spike_rate: peak spike rate.</span>
-<span class="sd">            This is the part of the input to estimation procedure stored as reference</span>
-<span class="sd">        steady_state_current: steady-state current estimated from steady-state spike rate</span>
-<span class="sd">        peak_state_current: peak current estimated from peak spike rate</span>
-<span class="sd">        affs: affinity values</span>
-<span class="sd">        br: binding rates</span>
-<span class="sd">        dr: dissociation rates</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="sd">&quot;&quot;&quot;noise parameter of the NoisyConnorStevens neuron&quot;&quot;&quot;</span>
+
     <span class="n">steady_state_spike_rate</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;steady-state spike rate.</span>
+<span class="sd">    This is the part of the input to estimation procedure stored as reference&quot;&quot;&quot;</span>
+
     <span class="n">peak_spike_rate</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;peak spike rate.</span>
+<span class="sd">    This is the part of the input to estimation procedure stored as reference&quot;&quot;&quot;</span>
+
     <span class="n">steady_state_current</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;steady-state current estimated from steady-state spike rate&quot;&quot;&quot;</span>
+
     <span class="n">peak_current</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;peak current estimated from peak spike rate&quot;&quot;&quot;</span>
+
     <span class="n">affs</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;affinity values&quot;&quot;&quot;</span>
+
     <span class="n">br</span><span class="p">:</span> <span class="n">float_array</span>
-    <span class="n">dr</span><span class="p">:</span> <span class="n">float_array</span></div>
+    <span class="sd">&quot;&quot;&quot;binding rates&quot;&quot;&quot;</span>
+
+    <span class="n">dr</span><span class="p">:</span> <span class="n">float_array</span>
+    <span class="sd">&quot;&quot;&quot;dissociation rates&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="estimate"><a class="viewcode-back" href="../../olftrans.html#olftrans.olftrans.estimate">[docs]</a><span class="k">def</span> <span class="nf">estimate</span><span class="p">(</span>

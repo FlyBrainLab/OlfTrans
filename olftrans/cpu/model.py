@@ -1,7 +1,6 @@
 """CPU Models
 """
 import numpy as np
-import cupy as cp
 from abc import abstractmethod
 from collections.abc import Iterable
 from numbers import Number

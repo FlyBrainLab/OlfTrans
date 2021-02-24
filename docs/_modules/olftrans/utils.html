@@ -32,7 +32,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -316,11 +315,9 @@
 <span class="sd">        num: number of trials to generate</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A tuple of (time, spikes).</span>
-<span class="sd">        Spikes is a binary numpy array of either shape</span>
-<span class="sd">            1. (Nt, num) if num &gt; 1</span>
-<span class="sd">            2. (Nt,) if num == 1</span>
-<span class="sd">        See Notes for definition of `Nt`</span>
+<span class="sd">        A tuple of shape (time, spikes), where spikes is a binary numpy array</span>
+<span class="sd">        of either shape :code:`(Nt, num)` if :code:`num &gt; 1`, or :code:`(Nt,)`</span>
+<span class="sd">        if :code:`num == 1`. See Notes for definition of `Nt`.</span>
 
 <span class="sd">    Notes:</span>
 <span class="sd">        1. If `psth_t` is specified:</span>
@@ -338,7 +335,6 @@
 <span class="sd">        &gt;&gt;&gt; psth, psth_t = utils.PSTH(spikes, d_t=dt, window=20e-3, shift=10e-3).compute()</span>
 <span class="sd">        &gt;&gt;&gt; tt, spikes = utils.generate_spike_from_psth(dt, psth, psth_t)</span>
 <span class="sd">        &gt;&gt;&gt; plot.plot_spikes(spikes, t=tt)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">psth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psth</span><span class="p">)</span>
     <span class="n">psth_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psth_t</span><span class="p">)</span>

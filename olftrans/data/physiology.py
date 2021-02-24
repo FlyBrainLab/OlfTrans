@@ -2,8 +2,9 @@ import os
 import h5py
 import numpy as np
 from olftrans import DATADIR
+from warnings import warn
 from . import utils
-
+from .. import errors as err
 
 def get_data(dt, fpath="antenna_data.h5"):
     data = dict()
@@ -31,4 +32,16 @@ def get_data(dt, fpath="antenna_data.h5"):
 
 
 DT = 1e-5
-DATA = get_data(DT, os.path.join(DATADIR, "antenna_data.h5"))
+DATA = None
+
+try:
+    DATA = get_data(DT, os.path.join(DATADIR, "antenna_data.h5"))
+except OSError as e:
+    warn(err.MissingFileWarning(
+        'Antenna Physiology Data Not Found. Make sure the file olftrans/data/antenna_data.h5 '
+        'is found and named as antenna_data.h5. Follow instructions at '
+        'http://amacrine.ee.columbia.edu:15000/ to download and place'
+        'in olftrans/data folder.'
+    ))
+except Exception:
+    raise Exception("Loading Antenna Data encountered unknown error.") from e

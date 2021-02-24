@@ -32,7 +32,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -93,6 +92,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">OlfTrans</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datasets">Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a></li>
 </ul>
 </li>
@@ -173,14 +173,45 @@
 <p>Olfactory Transduction Utilities for FlyBrainLab.</p>
 <ul class="simple">
 <li><p>Free software: BSD license</p></li>
+<li><p>Documentation: <a class="reference external" href="https://flybrainlab.github.io/OlfTrans/">https://flybrainlab.github.io/OlfTrans/</a></p></li>
 </ul>
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <p>The main features of the package are 3 fold:</p>
 <ol class="arabic simple">
-<li><p>Estimating Binding and Dissociation Rates from Data</p></li>
+<li><p>Estimating Binding and Dissociation Rates from Data (see next session for available datasets)</p></li>
 <li><p>Running OTP-BSG Cascades</p></li>
 <li><p>Working with other FlyBrainLab libraries</p></li>
+</ol>
+</div>
+<div class="section" id="datasets">
+<h2>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h2>
+<p><strong>OlfTrans</strong> relies on the following datasets to estimate model parameters for
+<em>Drosophila</em> adult and larva Odorant Transduction:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>(Included) Hallem, E. A., &amp; Carlson, J. R. (2006). <em>Coding of Odors by a Receptor Repertoire</em>. Cell. <a class="reference external" href="https://doi.org/10.1016/j.cell.2006.01.050">DOI1</a></dt><dd><ul class="simple">
+<li><p>Accessible as <code class="code docutils literal notranslate"><span class="pre">olftrans.data.HallemCarlson</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(Included) Kreher, S. A., Kwon, J. Y., &amp; Carlson, J. R. (2005). <em>The molecular basis of odor coding in the Drosophila larva</em>. Neuron. <a class="reference external" href="https://doi.org/10.1016/j.neuron.2005.04.007">DOI2</a></dt><dd><ul class="simple">
+<li><p>Accessible as <code class="code docutils literal notranslate"><span class="pre">olftrans.data.Kreher</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>(Need Download) Lazar, A. A., &amp; Yeh, C.-H. (2020). <em>A molecular odorant transduction model and the complexity of spatio-temporal encoding in the Drosophila antenna</em>. PLOS Computational Biology. <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1007751">DOI3</a></dt><dd><ul class="simple">
+<li><p>Electrophysiology data of <em>Drosophila</em> adult antenna can be downloaded <a class="reference external" href="http://amacrine.ee.columbia.edu:15000/">here</a></p></li>
+<li><p>Rename the downlaod the file (77 MB) as <code class="code docutils literal notranslate"><span class="pre">antenna_data.h5</span></code> and place into the <code class="code docutils literal notranslate"><span class="pre">olftrans/data/</span></code> folder</p></li>
+<li><p>Afterwards, accessible as <code class="code docutils literal notranslate"><span class="pre">olftrans.data.Physiology</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ol>
 </div>
 <div class="section" id="credits">

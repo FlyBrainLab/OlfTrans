@@ -14,6 +14,14 @@ Subpackages
 Submodules
 ----------
 
+olftrans.errors module
+----------------------
+
+.. automodule:: olftrans.errors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 olftrans.fbl module
 -------------------
 

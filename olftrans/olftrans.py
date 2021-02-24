@@ -21,28 +21,33 @@ float_array = tp.Union[float, np.ndarray]
 @dataclass(frozen=True)
 class Estimation:
     """Estimation Result
-
-    Attributes:
-        sigma: noise parameter of the NoisyConnorStevens neuron
-        steady_state_spike_rate: steady-state spike rate.
-            This is the part of the input to estimation procedure stored as reference
-        peak_state_spike_rate: peak spike rate.
-            This is the part of the input to estimation procedure stored as reference
-        steady_state_current: steady-state current estimated from steady-state spike rate
-        peak_state_current: peak current estimated from peak spike rate
-        affs: affinity values
-        br: binding rates
-        dr: dissociation rates
     """
 
     sigma: float
+    """noise parameter of the NoisyConnorStevens neuron"""
+
     steady_state_spike_rate: float_array
+    """steady-state spike rate.
+    This is the part of the input to estimation procedure stored as reference"""
+
     peak_spike_rate: float_array
+    """peak spike rate.
+    This is the part of the input to estimation procedure stored as reference"""
+
     steady_state_current: float_array
+    """steady-state current estimated from steady-state spike rate"""
+
     peak_current: float_array
+    """peak current estimated from peak spike rate"""
+
     affs: float_array
+    """affinity values"""
+
     br: float_array
+    """binding rates"""
+
     dr: float_array
+    """dissociation rates"""
 
 
 def estimate(
